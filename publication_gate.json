@@ -1,0 +1,15 @@
+{
+  "paper": "rHndxbqWyh",
+  "title": "Nonparametric LLM Evaluation from Preference Data (DMLRank)",
+  "arxiv": "2601.21816",
+  "tests_passed": true,
+  "publication_gate_passed": true,
+  "claims_verified": 5,
+  "claims_total": 6,
+  "points": 10,
+  "claims_verified_machine_precision": ["c1"],
+  "honest_negatives": ["c6 verified at mechanism scale (K=20); literal Chatbot Arena n=32980 pipeline pending"],
+  "verdict": "outputs/verdict.json",
+  "verify": "python repro/src/verify.py",
+  "tests": ["python repro/tests/test_c1_gars.py", "python repro/tests/test_controls.py", "python repro/src/c6_demo.py"]
+}
