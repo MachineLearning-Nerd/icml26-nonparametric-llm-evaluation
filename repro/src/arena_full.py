@@ -46,6 +46,7 @@ W2 = np.array([0.0, 1.0, 1.0, 0.0])
 EPS = 1e-5
 NEGATIVES_PER_POSITIVE = 10
 TUNING_ITERATIONS = 2
+CV_JOBS = 3
 PARAMETER_GRID = {
     "n_estimators": [50, 100, 300, 600],
     "learning_rate": [0.03, 0.07, 0.1],
@@ -65,6 +66,20 @@ def _available_cpus() -> int:
     return os.cpu_count() or 1
 
 
+def _model_threads() -> int:
+    """Avoid oversubscribing the 64-core runner during three-way CV."""
+    return max(1, min(16, _available_cpus() // CV_JOBS))
+
+
+def _stage(started: float, name: str, **details: object) -> None:
+    payload = {
+        "elapsed_seconds": round(time.monotonic() - started, 3),
+        "stage": name,
+        **details,
+    }
+    print("ARENA_STAGE=" + json.dumps(payload, sort_keys=True), flush=True)
+
+
 def _tuned_classifier(
     *,
     objective: str,
@@ -78,7 +93,7 @@ def _tuned_classifier(
     base = LGBMClassifier(
         objective=objective,
         random_state=random_state,
-        n_jobs=_available_cpus(),
+        n_jobs=_model_threads(),
         verbosity=-1,
         subsample_freq=1,
         **objective_parameters,
@@ -90,7 +105,7 @@ def _tuned_classifier(
         scoring="neg_log_loss",
         cv=3,
         random_state=random_state,
-        n_jobs=1,
+        n_jobs=CV_JOBS,
         refit=True,
     )
     search.fit(
@@ -369,19 +384,28 @@ def _jacobian_finite_difference_check() -> dict[str, float]:
 def main() -> int:
     started = time.monotonic()
     jacobian_errors = _jacobian_finite_difference_check()
+    _stage(started, "jacobian_check_complete", max_abs_error=max(jacobian_errors.values()))
     data_path = hf_hub_download(
         repo_id=DATASET_ID,
         filename=DATASET_FILE,
         repo_type="dataset",
         revision=DATASET_REVISION,
     )
+    _stage(started, "dataset_download_complete", bytes=Path(data_path).stat().st_size)
     frame = pd.read_parquet(data_path)
     raw_rows = len(frame)
+    _stage(started, "parquet_load_complete", raw_rows=raw_rows)
     normalized_content_sha256 = _normalized_content_sha256(frame)
+    _stage(
+        started,
+        "content_hash_complete",
+        normalized_content_sha256=normalized_content_sha256,
+    )
     frame = frame.drop_duplicates("question_id", keep="first").reset_index(drop=True)
     prompts = [_prompt(value) for value in frame["conversation_a"]]
     toxicity = np.array([_toxicity(value) for value in frame["toxic_chat_tag"]])
     turns = frame["turn"].to_numpy(dtype=float)
+    _stage(started, "cohort_normalization_complete", n_contexts=len(frame))
 
     vectorizer = TfidfVectorizer(
         min_df=2,
@@ -390,8 +414,15 @@ def main() -> int:
         sublinear_tf=True,
     )
     tfidf = vectorizer.fit_transform(prompts)
+    _stage(
+        started,
+        "tfidf_complete",
+        columns=tfidf.shape[1],
+        nonzero_entries=int(tfidf.nnz),
+    )
     svd = TruncatedSVD(n_components=100, random_state=260121816)
     text_features = svd.fit_transform(tfidf)
+    _stage(started, "svd_complete", components=text_features.shape[1])
     x_all = np.column_stack([toxicity, text_features, turns]).astype(np.float32)
 
     models = sorted(set(frame["model_a"]) | set(frame["model_b"]))
@@ -406,6 +437,14 @@ def main() -> int:
             f"Claim-6 scale mismatch: raw={raw_rows}, n={n_contexts}, "
             f"K={k_items}, p={x_all.shape[1]}"
         )
+    _stage(
+        started,
+        "scale_gate_complete",
+        raw_rows=raw_rows,
+        n_contexts=n_contexts,
+        k_models=k_items,
+        feature_dimension=x_all.shape[1],
+    )
 
     b_mat, unordered_pairs = _incidence(k_items)
     edge_index = {pair: index for index, pair in enumerate(unordered_pairs)}
@@ -426,6 +465,14 @@ def main() -> int:
 
     folds = KFold(n_splits=2, shuffle=True, random_state=260121816)
     for fold, (train, test) in enumerate(folds.split(x_all)):
+        _stage(
+            started,
+            "outcome_tuning_start",
+            fold=fold,
+            cv_jobs=CV_JOBS,
+            model_threads=_model_threads(),
+            train_rows=len(train),
+        )
         train_rows = np.column_stack(
             [x_all[train], selected_j[train], selected_k[train]]
         ).astype(np.float32)
@@ -436,6 +483,7 @@ def main() -> int:
             y_train=outcomes[train],
             categorical_features=[x_all.shape[1], x_all.shape[1] + 1],
         )
+        _stage(started, "outcome_tuning_complete", fold=fold)
         if not np.array_equal(classifier.classes_, np.arange(4)):
             raise AssertionError(
                 f"Outcome classes missing in fold {fold}: {classifier.classes_.tolist()}"
@@ -448,6 +496,14 @@ def main() -> int:
             ordered_pairs=ordered_pairs,
             random_state=260121900 + fold,
         )
+        _stage(
+            started,
+            "propensity_tuning_start",
+            fold=fold,
+            cv_jobs=CV_JOBS,
+            model_threads=_model_threads(),
+            train_rows=len(pi_rows),
+        )
         propensity_classifier, pi_tuning = _tuned_classifier(
             objective="binary",
             random_state=260121900 + fold,
@@ -456,6 +512,7 @@ def main() -> int:
             categorical_features=[x_all.shape[1], x_all.shape[1] + 1],
             sample_weight=pi_weights,
         )
+        _stage(started, "propensity_tuning_complete", fold=fold)
         selected_test_rows = np.column_stack(
             [x_all[test], selected_j[test], selected_k[test]]
         ).astype(np.float32)
@@ -503,10 +560,14 @@ def main() -> int:
                     plugin_values[name][context_index] = gars[name]
                     contributions[name][context_index] = gars[name] + correction
             if chunk_start % 2048 == 0:
-                print(
-                    f"ARENA_PROGRESS fold={fold} processed={min(chunk_start + 32, len(test))}/{len(test)}",
-                    flush=True,
+                _stage(
+                    started,
+                    "fold_inference_progress",
+                    fold=fold,
+                    processed=min(chunk_start + len(indices), len(test)),
+                    total=len(test),
                 )
+        _stage(started, "fold_complete", fold=fold)
 
     z_simultaneous = norm.ppf(1 - 0.05 / (2 * k_items))
     summaries: dict[str, object] = {}
@@ -566,6 +627,8 @@ def main() -> int:
         ],
         "cross_fitting_folds": 2,
         "tuning_iterations": TUNING_ITERATIONS,
+        "cv_jobs": CV_JOBS,
+        "model_threads_per_fit": _model_threads(),
         "negative_samples_per_positive": NEGATIVES_PER_POSITIVE,
         "jacobian_finite_difference_max_abs_errors": jacobian_errors,
         "fold_diagnostics": fold_diagnostics,
