@@ -1,26 +1,29 @@
 # Claim 6 method
 
-Run the fixed project command:
+The fixed command is:
 
 ```text
 uv sync --frozen && uv run python repro/run_all.py
 ```
 
-The cumulative runner invokes `repro/src/arena_full.py`. It downloads the
-pinned public dataset revision, asserts the paper's full dimensions, builds
-the 102 covariates, and uses deterministic two-fold cross-fitting. In each
-training fold it tunes the outcome and selection LightGBM models using the
-paper's real-data grid and two randomized draws. Selection negatives are drawn
-within context at 10:1 and receive inverse-inclusion weights.
+`repro/src/arena_full.py` downloads the pinned dataset revision, asserts the
+paper's full dimensions, builds the 102 covariates, and uses deterministic
+two-fold cross-fitting. Each training fold tunes outcome and selection
+LightGBM models with the paper's grid and two randomized draws. Selection
+negatives are drawn within context at 10:1 and receive inverse-inclusion
+weights.
 
-Held-out nuisance predictions are evaluated for all 380 ordered model pairs.
-For the observed pair, the code evaluates the analytic Jacobian of each GARS
-and forms the paper's EIF summand. Bonferroni simultaneous intervals use the
-empirical covariance of the cross-fitted summands. The independent numerical
-audit records every fitted propensity range and tuning result. The negative
-control omits the EIF correction, which must reproduce the plugin width and
-must not pass the debiased-width contract.
+Held-out nuisance predictions cover all 380 ordered model pairs. For each
+observed pair, the analytic Jacobian of each GARS forms the EIF summand.
+Bonferroni simultaneous intervals use the empirical covariance of cross-fitted
+summands.
 
-Estimated requirement before launch: 16 useful CPU cores, uncertain runtime
-of 10--35 minutes, and less than 3 GB working memory. The authorized backend is
-Hugging Face `cpu-upgrade`; local execution is prohibited for this run.
+The mechanism check confirms that omitting EIF reproduces plugin widths. The
+negative control reruns the whole contrast with EIF disabled; plugin and
+candidate-debiased widths then coincide, ratio one, and the contract must fail.
+`repro/checkers/check_claim6.py` independently reads serialized width vectors,
+recomputes all ratios, and exits nonzero for an injected `n=3000` corruption.
+
+The final run estimated 48 simultaneously useful cores and used Hugging Face
+`cpu-upgrade`; 64 logical CPUs were allocated. Arena inference took `298.715`
+seconds and the cumulative run took `527.503` seconds.

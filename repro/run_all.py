@@ -32,6 +32,10 @@ STEPS = (
     ("claims_2_to_5", ROOT / "repro/src/verify.py"),
     ("claim_6_mechanism", ROOT / "repro/src/c6_demo.py"),
     ("negative_controls", ROOT / "repro/tests/test_controls.py"),
+    (
+        "final_evidence_bundle_checker",
+        ROOT / "repro/checkers/run_evidence_bundle_checker.py",
+    ),
 )
 
 

@@ -1,4 +1,4 @@
-# Claim 3 method
+# Claim 3 method: four routes
 
 The fixed command is:
 
@@ -6,21 +6,17 @@ The fixed command is:
 uv sync --frozen && uv run python repro/run_all.py
 ```
 
-`repro/src/table1_borda.py` regenerates the published nonlinear-tie DGP using
-the Section 7.1 five-covariate interpretation,
-computes truth over one million fresh contexts, and runs 100 independent
-`n=1000` datasets. Each repetition draws all ordered-pair selection indicators
-from the known contextual propensity and outcomes from the ternary preference
-distribution. A global LightGBM classifier is tuned in each training fold and
-predicts all held-out ordered pairs. The paper's analytic weighted-Borda
-Jacobian forms the EIF correction.
+Four routes were completed because confidence remained LOW. Route 1 uses
+Appendix Table 5's `p=2`; route 2 uses Section 7.1's contradictory `p=5`.
+Both compute truth over one million fresh contexts and run 100 deterministic
+`n=1000` repetitions with the published NonlinearTie equations, known
+propensities, two-fold cross-fitting, and 30-draw/three-fold-CV LightGBM
+tuning.
 
-The primary error is the Euclidean distance between the estimated and true
-three-vector. Coverage is joint across all three coordinates using the
-Bonferroni simultaneous interval from Appendix H. The omitted-EIF plugin is the
-negative control. The result exits nonzero unless its four Monte Carlo intervals
-overlap the paper intervals and its directional/coverage checks pass.
+Route 3 recomputes L1, L2, Linf, MAE, MSE, and RMSE directly from route-2 raw
+vectors. Route 4 is the mandatory falsification route: it restates the exact
+finite-experiment claim and tests whether any divergence is an
+assumption-satisfying counterexample.
 
-Pre-launch estimate: 16--64 useful cores, 30--120 minutes uncertain runtime,
-less than 4 GB memory. This requires Hugging Face `cpu-upgrade`; it must not run
-locally.
+Routes 1 and 2 use Hugging Face `cpu-upgrade`; the deterministic metric and
+falsification audits are single-core, sub-five-minute local tasks.
