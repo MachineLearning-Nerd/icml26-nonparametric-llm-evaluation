@@ -1,0 +1,14 @@
+{
+  "claim_id": 2,
+  "source": {
+    "arxiv": "2601.21816",
+    "anchors": ["Theorem 5.1 Eqs. (9)-(13)", "Appendix B.1-B.2"]
+  },
+  "contract": [
+    "Audit positivity, missing-at-random, iid sampling, smoothness, moments, cross-fitting, and nuisance-rate assumptions.",
+    "Independently reconstruct the EIF mean-zero and pathwise derivative identities in a saturated observed-data model.",
+    "Reject an EIF that omits inverse-propensity weighting.",
+    "Do not treat finite Monte Carlo normality as proof of a universal asymptotic theorem."
+  ],
+  "verifier": "repro/src/exact_theory.py"
+}

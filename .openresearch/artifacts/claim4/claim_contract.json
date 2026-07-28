@@ -1,0 +1,14 @@
+{
+  "claim_id": 4,
+  "source": {
+    "arxiv": "2601.21816",
+    "anchors": ["Definition 6.1", "Theorem 6.2 Eq. (17)", "Assumption B.1"]
+  },
+  "contract": [
+    "Use positive q=tr(J V J^T), positive costs, a nonempty clipped feasible set, and a binding budget.",
+    "Compute the clipped square-root policy and lambda independently of an optimizer.",
+    "Match multi-start constrained numerical optimization and satisfy KKT residuals.",
+    "Reject an inverted-informativeness negative control."
+  ],
+  "verifier": "repro/src/exact_theory.py"
+}
