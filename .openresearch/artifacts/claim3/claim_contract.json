@@ -1,0 +1,27 @@
+{
+  "claim_id": 3,
+  "source": {
+    "arxiv": "2601.21816",
+    "anchors": ["Table 1", "Section 7.1", "Appendices H, I, and J"]
+  },
+  "paper_values": {
+    "plugin_error": "0.38 +/- 0.08",
+    "plugin_coverage": "0.17 +/- 0.09",
+    "debiased_error": "0.15 +/- 0.03",
+    "debiased_coverage": "0.94 +/- 0.06"
+  },
+  "contract": [
+    "Use the published NonlinearTie K=3, p=2, n=1000 DGP and selection policy.",
+    "Use a one-million-context ground-truth calculation.",
+    "Run 100 deterministic independent repetitions.",
+    "Use known propensities and two-fold cross-fitted LightGBM outcome nuisances with 30-draw randomized tuning and three-fold CV.",
+    "Use joint 95% Bonferroni intervals and Euclidean ranking-score error.",
+    "Require all four clean-room 95% Monte Carlo intervals to overlap their paper intervals.",
+    "Require debiasing to lower error, raise coverage, and produce a coverage interval containing 0.95."
+  ],
+  "verifier": "repro/src/table1_borda.py",
+  "seeds": {
+    "dgp": 260121816,
+    "replications": "260221816 through 260221915"
+  }
+}
