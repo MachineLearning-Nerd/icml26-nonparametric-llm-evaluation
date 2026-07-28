@@ -6,7 +6,8 @@ The fixed command is:
 uv sync --frozen && uv run python repro/run_all.py
 ```
 
-`repro/src/table1_borda.py` regenerates the published nonlinear-tie DGP,
+`repro/src/table1_borda.py` regenerates the published nonlinear-tie DGP using
+the Section 7.1 five-covariate interpretation,
 computes truth over one million fresh contexts, and runs 100 independent
 `n=1000` datasets. Each repetition draws all ordered-pair selection indicators
 from the known contextual propensity and outcomes from the ternary preference

@@ -13,10 +13,13 @@ global LightGBM outcome classifier with pair indices as categorical features
 and 30-draw randomized tuning with three-fold CV. The propensity is known in
 this synthetic DGP.
 
-Two ambiguities are material. Section 7.1 says five covariates while the more
-specific Appendix Table 5 says `p=2`. The paper does not state the synthetic
+Two ambiguities are material. Section 7.1 says five covariates while Appendix
+Table 5 says `p=2`. Route 1 followed the appendix and produced much smaller
+errors than the table. This second route follows the explicit main-text
+five-covariate interpretation. The paper does not state the synthetic
 cross-fitting fold count, DGP seed, or distributions of every coefficient
 whose scale is given. The cited author archive returned HTTP 410 and no public
-mirror was found on 2026-07-28. This clean-room route follows Appendix Table 5,
-uses two folds (the minimum allowed by Theorem 5.1), and explicitly fixes all
+mirror was found on 2026-07-28. The later arXiv PDF names a GitHub repository,
+but that URL also returns “Repository not found.” This clean-room route uses
+two folds (the minimum allowed by Theorem 5.1) and explicitly fixes all
 otherwise unavailable draws. It tests statistical agreement, not seed identity.

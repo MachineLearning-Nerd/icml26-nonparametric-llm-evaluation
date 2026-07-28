@@ -11,7 +11,7 @@
     "debiased_coverage": "0.94 +/- 0.06"
   },
   "contract": [
-    "Use the published NonlinearTie K=3, p=2, n=1000 DGP and selection policy.",
+    "Use the Section 7.1 NonlinearTie K=3, p=5, n=1000 interpretation and published selection policy.",
     "Use a one-million-context ground-truth calculation.",
     "Run 100 deterministic independent repetitions.",
     "Use known propensities and two-fold cross-fitted LightGBM outcome nuisances with 30-draw randomized tuning and three-fold CV.",

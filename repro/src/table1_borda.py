@@ -27,7 +27,7 @@ SEED = 260121816
 REPETITIONS = 100
 N_CONTEXTS = 1000
 K_ITEMS = 3
-P_FEATURES = 2
+P_FEATURES = 5
 W1 = np.array([1.0, 0.0, 0.5])
 W2 = np.array([0.0, 1.0, 0.5])
 PARAMETER_GRID = {
@@ -387,10 +387,14 @@ def main() -> int:
                 < observed["debiased_coverage"]["mean"]
             ),
         },
+        "source_interpretation": (
+            "Route 2 follows Section 7.1's explicit five-covariate statement "
+            "instead of Appendix Table 5's contradictory p=2 entry."
+        ),
         "limitations": [
             "The author archive returned HTTP 410, so its DGP seed, omitted coefficient distributions, and synthetic cross-fit fold count are unavailable.",
             "The clean-room coefficient draws are explicit; the published K=3, p=2, n=1000, DGP equations, propensities, nuisance grid, 100 repetitions, and one-million-context truth calculation are preserved.",
-            "The main text says five covariates while Appendix Table 5 says p=2; this run follows the more specific Appendix Table 5.",
+            "The main text says five covariates while Appendix Table 5 says p=2; this route follows the main-text p=5 interpretation.",
         ],
         "raw_repetitions": raw,
     }
