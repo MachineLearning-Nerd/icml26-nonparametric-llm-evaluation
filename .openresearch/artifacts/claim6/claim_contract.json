@@ -1,0 +1,18 @@
+{
+  "claim_id": 6,
+  "source": {
+    "arxiv": "2601.21816",
+    "anchors": ["Section 7.2", "Figure 3", "Appendix K"]
+  },
+  "contract": [
+    "Use lmsys/chatbot_arena_conversations at a pinned revision.",
+    "Deduplicate question_id to exactly 32,980 contexts and retain exactly 20 models.",
+    "Use released RoBERTa toxicity probability, TF-IDF plus 100-D truncated SVD, and turn index for p=102.",
+    "Use two-fold cross-fitted LightGBM nuisance predictions, two randomized-search iterations, and the published 10:1 weighted negative-sampling propensity protocol.",
+    "Compute plugin and EIF simultaneous intervals for weighted Borda, BT, and Rank Centrality.",
+    "Require plugin median interval width to be less than half the EIF width for every GARS.",
+    "Omitting the EIF correction must collapse back to plugin uncertainty."
+  ],
+  "seeds": [260121816],
+  "verifier": "repro/src/arena_full.py"
+}
