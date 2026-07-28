@@ -1,0 +1,15 @@
+{
+  "claim_id": 5,
+  "route": 2,
+  "source_interpretation": "Appendix Table 5 nctx=3000 consists of a 1500-context random pilot for nuisance training followed by the Section 7 n=1500 acquisition sample.",
+  "fixed_command": "uv sync --frozen && uv run python repro/run_all.py",
+  "requirements": [
+    "Tune a global binary LightGBM nuisance model on the independent pilot with the paper's 30-draw, three-fold data-collection search grid.",
+    "Design separate Borda, BT, and Rank Centrality A-optimal policies on fresh contexts from pilot-trained predictions.",
+    "Use the pilot-trained nuisance in the EIF estimator for both A-optimal and budget-matched random acquisition.",
+    "Run 15 deterministic repetitions at beta=2000 and report MSE times 100.",
+    "Require A-optimal mean MSE below random for every GARS and all six observed Monte Carlo intervals to overlap the v1 paper intervals.",
+    "Require exact expected budgets, nonnegative influence weights, optimal objectives, and rejection of a budget-matched inverted-information control."
+  ],
+  "verifier": "repro/src/table2_learned.py"
+}
