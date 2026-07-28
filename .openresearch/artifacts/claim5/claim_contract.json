@@ -1,0 +1,20 @@
+{
+  "claim_id": 5,
+  "source": {
+    "arxiv": "2601.21816",
+    "anchors": ["Table 2", "Section 7.1", "Appendix J"]
+  },
+  "contract": [
+    "Use the v1 judged BTMisspec K=3, p=2, gamma=1, n=1500, beta=2000 setup.",
+    "Run 15 deterministic repetitions and report ranking MSE times 100.",
+    "Compute separate oracle A-optimal policies for Borda, BT, and Rank Centrality and compare with a budget-matched uniform policy.",
+    "Require expected budget error below 1e-6 and A-optimal variance objective no greater than random.",
+    "Require A-optimal mean MSE below random for every GARS.",
+    "Require all six observed 95% Monte Carlo intervals to overlap the v1 paper intervals."
+  ],
+  "seeds": {
+    "dgp": 260121816,
+    "repetitions": "260321816 through 260321830"
+  },
+  "verifier": "repro/src/table2_oracle.py"
+}

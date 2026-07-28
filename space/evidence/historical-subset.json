@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "judged_revision": "1e8c465bf2e2573b8693e61e600f83dad4505ffa",
+  "old_file_count": 15,
+  "candidate_file_count_before_release_metadata": 116,
+  "old_path_set_is_subset_of_candidate_path_set": true,
+  "missing_old_paths": [],
+  "exact_historical_copies": {
+    "README.md": {
+      "copy": "historical/judged-1e8c465/README.md",
+      "sha256": "699efb3cccb0474fd5d3320e964f32c50780ce501d04dee65d8666690bd576d5"
+    },
+    "commands.md": {
+      "copy": "historical/judged-1e8c465/commands.md",
+      "sha256": "bd27aaa27acf0d562988c53bf8776308661eb5d3bb93b136aae4da2c1a2bc9a6"
+    },
+    "index.md": {
+      "copy": "historical/judged-1e8c465/index.md",
+      "sha256": "865f07d8aca5b4f8d32e870ab9a296fab7dcacc926443b3c5a13b46a56b1e986"
+    },
+    "pages/index.md": {
+      "copy": "historical/judged-1e8c465/pages/index.md",
+      "sha256": "24d962a7b30a6ed40e04913a5328aa9fc1102568c2a21decc31e0401f649ed7a"
+    },
+    "pages/executive-summary/page.md": {
+      "copy": "historical/judged-1e8c465/pages/executive-summary/page.md",
+      "sha256": "06dec4952e5957a321dec8f356e82853ef3b0db56330d29277acdf574fb4a8af"
+    }
+  },
+  "unchanged_binary_assets_retained_at_original_paths": [
+    "trackio-logo-light.png",
+    "trackio-logo.png",
+    "trackio-wordmark-dark.png"
+  ]
+}

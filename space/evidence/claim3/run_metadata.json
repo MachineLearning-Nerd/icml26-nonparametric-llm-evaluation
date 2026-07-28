@@ -1,0 +1,14 @@
+{
+  "fixed_command": "uv sync --frozen && uv run python repro/run_all.py",
+  "uv_lock_sha256": "95f8cd0826a479d495738fba954dc4e4a8712ce13614c21e2769667d3714c165",
+  "seeds": {
+    "dgp": 260121816,
+    "repetitions": "260221816 through 260221915"
+  },
+  "routes": [
+    {"route": 1, "run_id": "a4c15573-d83a-4275-aab4-36457f828f91", "git_sha": "a39ff6d", "backend": "hf cpu-upgrade", "estimated_cores": 16, "actual_cores": 64, "scientific_runtime_seconds": 506.574},
+    {"route": 2, "run_id": "ed3f6a44-6fa9-4807-aa09-c53358f5a23c", "git_sha": "ccc8d02", "backend": "hf cpu-upgrade", "estimated_cores": 16, "actual_cores": 64, "scientific_runtime_seconds": 501.392},
+    {"route": 3, "run_id": "d897f8df-20a7-482c-a1e6-f994ea9a57a8", "git_sha": "05755d0", "backend": "local", "estimated_cores": 1, "actual_allocation_exposed": 8, "scientific_runtime_seconds": 0.022},
+    {"route": 4, "run_id": "252c76ee-b068-4954-9c9a-6dbb2cd99cf8", "git_sha": "5ea1b8b", "backend": "local", "estimated_cores": 1, "actual_allocation_exposed": 8, "scientific_runtime_seconds": 0.000016}
+  ]
+}

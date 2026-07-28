@@ -1,0 +1,75 @@
+{
+  "schema_version": 1,
+  "title": "Nonparametric LLM Evaluation — Reproduction Evidence",
+  "emoji": "🎯",
+  "space_id": "DineshAI/rHndxbqWyh",
+  "paper": "arXiv:2601.21816",
+  "tags": [
+    "icml2026-repro",
+    "paper-rHndxbqWyh"
+  ],
+  "updated_at": "2026-07-28T00:00:00+00:00",
+  "root": {
+    "slug": "index",
+    "title": "Current evaluator-visible evidence",
+    "file": "pages/index.md",
+    "children": [
+      {
+        "slug": "claim-1",
+        "title": "Claim 1 — GARS special cases",
+        "file": "pages/claims/claim-1.md",
+        "children": []
+      },
+      {
+        "slug": "claim-2",
+        "title": "Claim 2 — efficient cross-fitted EIF",
+        "file": "pages/claims/claim-2.md",
+        "children": []
+      },
+      {
+        "slug": "claim-3",
+        "title": "Claim 3 — Table 1 (BLOCKED)",
+        "file": "pages/claims/claim-3.md",
+        "children": []
+      },
+      {
+        "slug": "claim-4",
+        "title": "Claim 4 — A-optimal policy",
+        "file": "pages/claims/claim-4.md",
+        "children": []
+      },
+      {
+        "slug": "claim-5",
+        "title": "Claim 5 — Table 2 (BLOCKED)",
+        "file": "pages/claims/claim-5.md",
+        "children": []
+      },
+      {
+        "slug": "claim-6",
+        "title": "Claim 6 — full-scale Arena",
+        "file": "pages/claims/claim-6.md",
+        "children": []
+      },
+      {
+        "slug": "release-report",
+        "title": "Release report",
+        "file": "pages/release-report.md",
+        "children": []
+      },
+      {
+        "slug": "red-team",
+        "title": "Blind evaluator review",
+        "file": "pages/red-team.md",
+        "children": []
+      },
+      {
+        "slug": "executive-summary",
+        "title": "Historical rejected baseline",
+        "file": "pages/executive-summary/page.md",
+        "children": []
+      }
+    ]
+  },
+  "agent_view_tokens": 0,
+  "revision": "candidate"
+}

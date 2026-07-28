@@ -1,0 +1,15 @@
+{
+  "claim_id": 5,
+  "route": 4,
+  "purpose": "Mandatory dedicated falsification after three LOW-confidence verification routes.",
+  "fixed_command": "uv sync --frozen && uv run python repro/run_all.py",
+  "acceptance_rule": [
+    "Restate the exact judged v1 empirical claim, domain, assumptions, and all six numerical intervals.",
+    "Independently recompute every route mean from raw repetitions.",
+    "For every A-optimal-minus-random reversal, require a paired-t 95% interval wholly above zero and exhaustive two-sided sign-flip p<0.05.",
+    "Require exact identity with the author v1 DGP seed, coefficient draws, code revision, raw configuration, and metric implementation.",
+    "Reject corrupted negative-MSE evidence and detect numeric tampering.",
+    "Return FALSIFIED only when both statistical reversal and exact source identity hold; otherwise return BLOCKED with the concrete unblocker."
+  ],
+  "verifier": "repro/src/claim5_falsification.py"
+}

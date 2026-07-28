@@ -1,0 +1,236 @@
+Cloning into 'repo'...
+Using CPython 3.12.12 interpreter at: /usr/local/bin/python3
+Creating virtual environment at: .venv
+Downloading scipy (33.7MiB)
+Downloading numpy (15.9MiB)
+Downloading pygments (1.2MiB)
+Downloading lightgbm (3.3MiB)
+Downloading scikit-learn (8.7MiB)
+Downloading hf-xet (4.2MiB)
+Downloading pyarrow (45.5MiB)
+Downloading jedi (1.5MiB)
+Downloading marimo (37.4MiB)
+Downloading pillow (6.6MiB)
+Downloading kiwisolver (1.4MiB)
+Downloading fonttools (4.8MiB)
+Downloading matplotlib (9.6MiB)
+Downloading loro (3.3MiB)
+Downloading pandas (11.8MiB)
+ Downloaded kiwisolver
+ Downloaded lightgbm
+ Downloaded loro
+ Downloaded pygments
+ Downloaded hf-xet
+ Downloaded fonttools
+ Downloaded pillow
+ Downloaded scikit-learn
+ Downloaded matplotlib
+ Downloaded numpy
+ Downloaded scipy
+ Downloaded jedi
+ Downloaded pandas
+ Downloaded pyarrow
+ Downloaded marimo
+Prepared 53 packages in 2.95s
+Installed 53 packages in 81ms
+ + anyio==4.14.2
+ + certifi==2026.7.22
+ + charset-normalizer==3.4.9
+ + click==8.4.2
+ + contourpy==1.3.3
+ + cycler==0.12.1
+ + docutils==0.23
+ + filelock==3.32.0
+ + fonttools==4.63.0
+ + fsspec==2026.6.0
+ + h11==0.16.0
+ + hf-xet==1.5.2
+ + huggingface-hub==0.36.2
+ + idna==3.18
+ + itsdangerous==2.2.0
+ + jedi==0.19.2
+ + joblib==1.5.3
+ + kiwisolver==1.5.0
+ + lightgbm==4.7.0
+ + loro==1.13.2
+ + marimo==0.23.15
+ + markdown==3.10.2
+ + matplotlib==3.11.1
+ + msgspec==0.21.1
+ + narwhals==2.24.0
+ + numpy==2.5.1
+ + packaging==26.2
+ + pandas==2.3.3
+ + parso==0.8.7
+ + pillow==12.3.0
+ + psutil==7.2.2
+ + pyarrow==22.0.0
+ + pygments==2.20.0
+ + pymdown-extensions==10.21.3
+ + pyparsing==3.3.2
+ + python-dateutil==2.9.0.post0
+ + python-multipart==0.0.32
+ + pytz==2026.3.post1
+ + pyyaml==6.0.3
+ + pyzmq==27.1.0
+ + requests==2.34.2
+ + scikit-learn==1.9.0
+ + scipy==1.18.0
+ + six==1.17.0
+ + starlette==1.3.1
+ + threadpoolctl==3.6.0
+ + tomlkit==0.15.1
+ + tqdm==4.70.0
+ + typing-extensions==4.16.0
+ + tzdata==2026.3
+ + urllib3==2.7.0
+ + uvicorn==0.51.0
+ + websockets==16.1.1
+=== FIXED CUMULATIVE REPRODUCTION ===
+{"estimated_required_cores": 64, "git_sha": "1c7b41b21a4c7ef1fb99821b33bef01316633dcd", "logical_cpu_allocation": 64, "platform": "Linux-6.12.90-120.164.amzn2023.x86_64-x86_64-with-glibc2.36", "python": "3.12.12", "selected_compute": "Hugging Face cpu-upgrade", "uv_lock_sha256": "95f8cd0826a479d495738fba954dc4e4a8712ce13614c21e2769667d3714c165"}
+
+=== START exact_theory_claims_1_2_4: repro/src/exact_theory.py ===
+EXACT_THEORY_RESULTS={"claim_1": {"checks": {"borda_rank_matches": true, "bt_recovers_centered_strengths_max_abs": 2.498001805406602e-16, "independent_bt_max_abs": 4.440892098500626e-16, "negative_control_wrong_bt_difference": 0.24895482253187073, "rc_rank_matches": true, "rc_score_sum_abs": 1.1102230246251565e-16, "rc_stationarity_max_abs": 8.326672684688674e-17, "rc_transition_row_sum_max_abs": 1.1102230246251565e-16}, "status": "VERIFIED"}, "claim_2": {"checks": {"eif_mean_zero_abs": 0.0, "max_pathwise_identity_abs": 2.7755575615628914e-17, "negative_control_max_identity_error": 0.05131604520000002}, "limitation": "The certificate reconstructs the general EIF identities on a complete finite observed-data model; finite computation alone is not a proof of every regularity condition in the paper's continuous-context asymptotic theorem.", "scope": "machine-checkable pathwise derivative certificate for a saturated finite MAR model", "status": "VERIFIED"}, "claim_4": {"checks": {"budget_abs_error": 4.440892098500626e-16, "independent_slsqp_max_abs": 5.8553100090730226e-08, "interior_kkt_ratio_range": 1.3322676295501878e-15, "lambda": 2.9449123088722198, "negative_control_objective_gap": 12.383118546613833, "negative_control_policy_difference": 0.5962324099170561}, "policy": [0.20186193844634284, 0.4071724656296387, 0.7736212298110203, 0.2305425798452758, 0.7890136811643614, 0.4555372612145416], "status": "VERIFIED"}, "passed": true, "schema_version": 1}
+=== END exact_theory_claims_1_2_4: {"exit_code": 0, "name": "exact_theory_claims_1_2_4", "path": "repro/src/exact_theory.py", "runtime_seconds": 1.789} ===
+
+=== START claim_6_full_chatbot_arena: repro/src/arena_full.py ===
+ARENA_STAGE={"elapsed_seconds": 0.004, "max_abs_error": 2.6175039469222838e-08, "stage": "jacobian_check_complete"}
+
+data/train-00000-of-00001-3ab4b90f49df28(…):   0%|          | 0.00/41.6M [00:00<?, ?B/s][Adata/train-00000-of-00001-3ab4b90f49df28(…): 100%|██████████| 41.6M/41.6M [00:00<00:00, 54.4MB/s]
+ARENA_STAGE={"bytes": 41573740, "elapsed_seconds": 0.912, "stage": "dataset_download_complete"}
+ARENA_STAGE={"elapsed_seconds": 1.509, "raw_rows": 33000, "stage": "parquet_load_complete"}
+ARENA_STAGE={"elapsed_seconds": 3.018, "normalized_content_sha256": "96ca2fb0caf42adfaa9ba7439d7175232f4e88970795bd6048b524a916a395fe", "stage": "content_hash_complete"}
+ARENA_STAGE={"elapsed_seconds": 3.068, "n_contexts": 32980, "stage": "cohort_normalization_complete"}
+ARENA_STAGE={"columns": 30000, "elapsed_seconds": 5.628, "nonzero_entries": 1081708, "stage": "tfidf_complete"}
+ARENA_STAGE={"components": 100, "elapsed_seconds": 39.718, "stage": "svd_complete"}
+ARENA_STAGE={"elapsed_seconds": 39.731, "stage": "feature_audit_complete", "toxicity_max": 0.8937399387359619, "toxicity_median": 0.01630109827965498, "toxicity_min": 0.00650737015530467, "toxicity_nonzero_count": 32980, "turn_max": 25.0, "turn_min": 1.0, "turn_unique_count": 16}
+ARENA_STAGE={"elapsed_seconds": 39.75, "feature_dimension": 102, "k_models": 20, "n_contexts": 32980, "raw_rows": 33000, "stage": "scale_gate_complete"}
+ARENA_STAGE={"cv_jobs": 3, "elapsed_seconds": 39.76, "fold": 0, "model_threads": 16, "stage": "outcome_tuning_start", "train_rows": 16490}
+ARENA_STAGE={"elapsed_seconds": 84.051, "fold": 0, "stage": "outcome_tuning_complete"}
+ARENA_STAGE={"cv_jobs": 3, "elapsed_seconds": 84.275, "fold": 0, "model_threads": 16, "stage": "propensity_tuning_start", "train_rows": 181390}
+ARENA_STAGE={"elapsed_seconds": 175.03, "fold": 0, "stage": "propensity_tuning_complete"}
+ARENA_STAGE={"elapsed_seconds": 175.613, "fold": 0, "processed": 128, "stage": "fold_inference_progress", "total": 16490}
+ARENA_STAGE={"elapsed_seconds": 183.351, "fold": 0, "processed": 2176, "stage": "fold_inference_progress", "total": 16490}
+ARENA_STAGE={"elapsed_seconds": 191.216, "fold": 0, "processed": 4224, "stage": "fold_inference_progress", "total": 16490}
+ARENA_STAGE={"elapsed_seconds": 198.906, "fold": 0, "processed": 6272, "stage": "fold_inference_progress", "total": 16490}
+ARENA_STAGE={"elapsed_seconds": 206.301, "fold": 0, "processed": 8320, "stage": "fold_inference_progress", "total": 16490}
+ARENA_STAGE={"elapsed_seconds": 213.803, "fold": 0, "processed": 10368, "stage": "fold_inference_progress", "total": 16490}
+ARENA_STAGE={"elapsed_seconds": 221.614, "fold": 0, "processed": 12416, "stage": "fold_inference_progress", "total": 16490}
+ARENA_STAGE={"elapsed_seconds": 229.382, "fold": 0, "processed": 14464, "stage": "fold_inference_progress", "total": 16490}
+ARENA_STAGE={"elapsed_seconds": 236.799, "fold": 0, "processed": 16490, "stage": "fold_inference_progress", "total": 16490}
+ARENA_STAGE={"elapsed_seconds": 236.799, "fold": 0, "stage": "fold_complete"}
+ARENA_STAGE={"cv_jobs": 3, "elapsed_seconds": 236.8, "fold": 1, "model_threads": 16, "stage": "outcome_tuning_start", "train_rows": 16490}
+ARENA_STAGE={"elapsed_seconds": 256.729, "fold": 1, "stage": "outcome_tuning_complete"}
+ARENA_STAGE={"cv_jobs": 3, "elapsed_seconds": 257.027, "fold": 1, "model_threads": 16, "stage": "propensity_tuning_start", "train_rows": 181390}
+ARENA_STAGE={"elapsed_seconds": 329.523, "fold": 1, "stage": "propensity_tuning_complete"}
+ARENA_STAGE={"elapsed_seconds": 329.948, "fold": 1, "processed": 128, "stage": "fold_inference_progress", "total": 16490}
+ARENA_STAGE={"elapsed_seconds": 335.701, "fold": 1, "processed": 2176, "stage": "fold_inference_progress", "total": 16490}
+ARENA_STAGE={"elapsed_seconds": 341.407, "fold": 1, "processed": 4224, "stage": "fold_inference_progress", "total": 16490}
+ARENA_STAGE={"elapsed_seconds": 347.307, "fold": 1, "processed": 6272, "stage": "fold_inference_progress", "total": 16490}
+ARENA_STAGE={"elapsed_seconds": 353.059, "fold": 1, "processed": 8320, "stage": "fold_inference_progress", "total": 16490}
+ARENA_STAGE={"elapsed_seconds": 358.847, "fold": 1, "processed": 10368, "stage": "fold_inference_progress", "total": 16490}
+ARENA_STAGE={"elapsed_seconds": 364.543, "fold": 1, "processed": 12416, "stage": "fold_inference_progress", "total": 16490}
+ARENA_STAGE={"elapsed_seconds": 370.25, "fold": 1, "processed": 14464, "stage": "fold_inference_progress", "total": 16490}
+ARENA_STAGE={"elapsed_seconds": 375.823, "fold": 1, "processed": 16490, "stage": "fold_inference_progress", "total": 16490}
+ARENA_STAGE={"elapsed_seconds": 375.823, "fold": 1, "stage": "fold_complete"}
+ARENA_FULL_RESULTS={"claim_id": 6, "cross_fitting_folds": 2, "cv_jobs": 3, "dataset_file": "data/train-00000-of-00001-3ab4b90f49df282a.parquet", "dataset_file_sha256": "d1b51b6052343ea0ef3762f9b1a6607146769d673e35a2b318cc77175daddd4d", "dataset_id": "dim/lmsys_chatbot_arena_conversations", "dataset_lfs_sha256": "d1b51b6052343ea0ef3762f9b1a6607146769d673e35a2b318cc77175daddd4d", "dataset_revision": "2878f2cc68c9f95ba9d4fdb36bb0bcf35a289eae", "feature_audit": {"toxicity_max": 0.8937399387359619, "toxicity_median": 0.01630109827965498, "toxicity_min": 0.00650737015530467, "toxicity_nonzero_count": 32980, "turn_max": 25.0, "turn_min": 1.0, "turn_unique_count": 16}, "feature_dimension": 102, "features": ["released RoBERTa toxicity probability", "TF-IDF plus 100-dimensional TruncatedSVD", "turn index"], "fold_diagnostics": [{"fold": 0, "mu_tuning": {"best_cv_neg_log_loss": -1.1526373801307022, "best_params": {"colsample_bytree": 0.9, "learning_rate": 0.07, "max_depth": 6, "min_child_samples": 30, "n_estimators": 100, "num_leaves": 63, "reg_alpha": 1.0, "reg_lambda": 0.0, "subsample": 1.0}}, "pi_tuning": {"best_cv_neg_log_loss": -0.019771970086871968, "best_params": {"colsample_bytree": 0.9, "learning_rate": 0.03, "max_depth": 6, "min_child_samples": 80, "n_estimators": 300, "num_leaves": 31, "reg_alpha": 1.0, "reg_lambda": 0.0, "subsample": 1.0}}, "selected_propensity_max": 0.03381409485662926, "selected_propensity_median": 0.003560101582529467, "selected_propensity_min": 0.00026202444992641906, "test_rows": 16490, "train_rows": 16490}, {"fold": 1, "mu_tuning": {"best_cv_neg_log_loss": -1.1464708317712808, "best_params": {"colsample_bytree": 0.9, "learning_rate": 0.1, "max_depth": 10, "min_child_samples": 10, "n_estimators": 100, "num_leaves": 15, "reg_alpha": 0.1, "reg_lambda": 0.0, "subsample": 0.9}}, "pi_tuning": {"best_cv_neg_log_loss": -0.020230814168547065, "best_params": {"colsample_bytree": 0.7, "learning_rate": 0.1, "max_depth": 10, "min_child_samples": 30, "n_estimators": 300, "num_leaves": 31, "reg_alpha": 1.0, "reg_lambda": 0.5, "subsample": 0.9}}, "selected_propensity_max": 0.16502673088589406, "selected_propensity_median": 0.003593439629891966, "selected_propensity_min": 0.00013730864002152264, "test_rows": 16490, "train_rows": 16490}], "gars": {"borda": {"contract_passed": true, "debiased_point": [0.34208216024028687, 0.324853296567503, 0.2880601596318468, 0.7090503755939477, 0.7537307254798323, 0.2004983311119478, 0.2759705523654787, 0.6889761485076122, 0.8188522320802031, 0.3525461780474451, 0.5665442461933232, 0.45968418150543644, 0.19746105928731206, 0.3579244863822668, 0.3172256167377655, 0.5162625098244339, 0.22986571101163725, 0.5618721484138811, 0.48023033105369306, 0.5275157011220226], "debiased_width_by_model": [0.05498067355969183, 0.05213809780426017, 0.06250261146710226, 0.059364235939480606, 0.047113867722252574, 0.05481524030955903, 0.0548335407901214, 0.049141203405043736, 0.04398125233116337, 0.09377922043431693, 0.09459136371697086, 0.05199175738367984, 0.05950848800169527, 0.06000234796598404, 0.04729050043376866, 0.05905875756880769, 0.05466616299075574, 0.04752377308573544, 0.05903496654329459, 0.09381127063602775], "debiased_width_mean": 0.06000646660448559, "debiased_width_median": 0.054907107174906614, "mechanism_omit_eif_matches_plugin": true, "mechanism_omit_eif_width_max_abs_difference_from_plugin": 0.0, "negative_control_disabled_eif_contract_passed": false, "negative_control_disabled_eif_rejected": true, "negative_control_disabled_eif_width_ratio": 1.0, "plugin_point": [0.3432837277037598, 0.32776784770154604, 0.2799013154784748, 0.7065902363506887, 0.7396908552459326, 0.21777109877100154, 0.2784146888561154, 0.6836412493641126, 0.7996800544182253, 0.35726541533280953, 0.5510137690508876, 0.4527939997679483, 0.21288236050681672, 0.35412245366272616, 0.3215593485427268, 0.5236907739615386, 0.23885535014967546, 0.5606427437650948, 0.47102674567065805, 0.5290671613584088], "plugin_to_debiased_median_width_ratio": 0.04018219206377316, "plugin_width_by_model": [0.002273866245630371, 0.002171823636970194, 0.00210324194642184, 0.002207838017496261, 0.0021527887798809212, 0.001781825437358018, 0.002178761673360896, 0.0019966208055576594, 0.0019335707041775272, 0.0022228075561199065, 0.0021898029469244033, 0.0024855332518234382, 0.0017773393496667046, 0.0022898008904330336, 0.0022032169551373148, 0.0024089367940793326, 0.002002996562853659, 0.0022620019369709488, 0.002562787035661, 0.002404697253060295], "plugin_width_mean": 0.002180512888979186, "plugin_width_median": 0.0021965099510308592}, "bt": {"contract_passed": true, "debiased_point": [-0.6720472799711085, -0.714441964951644, -0.7995417870910576, 0.8769561758858444, 1.124769258819346, -1.1452626412928628, -0.7002734114991395, 0.784290901339977, 1.3279195747762875, -0.3509663027785137, 0.40388820368219974, 0.0820477685423022, -0.8983521692030172, -0.13447241463313303, -0.27353779722620275, 0.3846237087591837, -0.4763556918260079, 0.421969008617836, 0.2878818308535069, 0.4709050291962022], "debiased_width_by_model": [0.25487785143079134, 0.2527206962796037, 0.34738714225158773, 0.3133262112278111, 0.26349179589309796, 0.34498525796396257, 0.2784286046364708, 0.249788823460459, 0.2984115516295387, 0.4267634494250988, 0.44933016657268254, 0.2286176122529562, 0.31331595345995256, 0.27670428646222955, 0.23198753200451447, 0.267244084404991, 0.33000458346712414, 0.21114981704100338, 0.30035116746419727, 0.42109627721678305], "debiased_width_mean": 0.30299914322724286, "debiased_width_median": 0.28842007813300474, "mechanism_omit_eif_matches_plugin": true, "mechanism_omit_eif_width_max_abs_difference_from_plugin": 0.0, "negative_control_disabled_eif_contract_passed": false, "negative_control_disabled_eif_rejected": true, "negative_control_disabled_eif_width_ratio": 1.0, "plugin_point": [-0.6800390129330814, -0.7093058859142056, -0.8654387058261309, 0.9342407168409219, 1.088694974734541, -1.082059541299004, -0.7122516715462396, 0.8013396819937767, 1.3380440371317803, -0.346944421763543, 0.38582463671592665, 0.027188932213209956, -0.8493768431916832, -0.1685723700190718, -0.2738093358031132, 0.37386754451215803, -0.47703638982136765, 0.41611094056883163, 0.3123535371537443, 0.48716917625254946], "plugin_to_debiased_median_width_ratio": 0.023531251149869956, "plugin_width_by_model": [0.010822310417369524, 0.009329860746838808, 0.008273290397688758, 0.008549687353815403, 0.008211915973107966, 0.005879287973761106, 0.0052826442476609165, 0.005498712693827312, 0.007488652586915382, 0.002739238731240657, 0.0033767048319435847, 0.0025763063997575465, 0.006224140129839952, 0.004488859788049366, 0.006071591113651523, 0.005298145831743941, 0.009234222688973247, 0.007002595172938313, 0.008930562944679787, 0.00978911471157386], "plugin_width_mean": 0.006753392236768849, "plugin_width_median": 0.006613367651389132}, "rank_centrality": {"contract_passed": true, "debiased_point": [0.03685114338617304, 0.03417040363208901, 0.03201035545268134, 0.08131860024584876, 0.0874701578169048, 0.022316459770878753, 0.029513217155594754, 0.07851698137980055, 0.09608726632575902, 0.03886507158808763, 0.06302225486254445, 0.049601657217293045, 0.02355475028484681, 0.03873587382923122, 0.03318062142547233, 0.057841446947186285, 0.02517070901316201, 0.06083421229211009, 0.053184056139427935, 0.05775476123490973], "debiased_width_by_model": [0.007267822241572718, 0.006873916728288676, 0.00855609268648261, 0.00868548542668261, 0.007785426835721504, 0.008140700727271234, 0.007261229294038799, 0.007674244546539015, 0.0073905955304063, 0.013459626170864018, 0.014411248945131896, 0.007003250659463958, 0.009003858466477254, 0.00836904228572921, 0.006361592131893776, 0.00860409449963975, 0.007477978654074273, 0.006957585330127344, 0.008744573467608988, 0.01300620366753964], "debiased_width_mean": 0.008651728414777677, "debiased_width_median": 0.007963063781496369, "mechanism_omit_eif_matches_plugin": true, "mechanism_omit_eif_width_max_abs_difference_from_plugin": 0.0, "negative_control_disabled_eif_contract_passed": false, "negative_control_disabled_eif_rejected": true, "negative_control_disabled_eif_width_ratio": 1.0, "plugin_point": [0.03702947508131673, 0.034736795135748864, 0.031145695524909298, 0.08158070852585239, 0.08499902841411448, 0.024356667482540246, 0.030739916881033433, 0.07706606744778875, 0.09205427230559332, 0.03980250557394795, 0.06188176304530685, 0.04946377113334055, 0.023960359409185835, 0.0386172272566491, 0.03449628547170025, 0.05839316678482386, 0.026712346030136603, 0.06141537742920348, 0.05246734014425054, 0.05908123092255796], "plugin_to_debiased_median_width_ratio": 0.014133656373289397, "plugin_width_by_model": [0.00010582220838692687, 0.00011217710540098469, 0.00012113712216607808, 0.00022588923039983328, 0.0002531971161359616, 0.00011485972877731435, 0.00012642713161501438, 0.00020942531401622772, 0.00032230670458132673, 9.851145619984176e-05, 0.00013919492308902534, 9.776409505061597e-05, 0.00012106422859823369, 0.00010748327721316997, 0.000110667697379508, 0.0001026811606004833, 0.00012701436918860845, 9.633946081214682e-05, 9.248509423016313e-05, 9.376153250726381e-05], "plugin_width_mean": 0.0001389104478174364, "plugin_width_median": 0.00011351841708914952}}, "jacobian_finite_difference_max_abs_errors": {"borda": 1.5776085715568655e-09, "bt": 2.6175039469222838e-08, "rank_centrality": 2.1589186063875054e-09}, "k_models": 20, "limitations": ["The ungated dim mirror has the release's expected scale and was uploaded as a single 41.6 MB copy, but the official gated content hash is redacted; matching cohort invariants do not prove byte identity.", "The anonymous author-code URL returned HTTP 410, so undocumented random seeds and TF-IDF preprocessing defaults cannot be matched.", "The clean-room implementation follows the published two-iteration randomized LightGBM tuning grid and weighted 10:1 propensity negative-sampling protocol."], "logical_cpu_allocation": 64, "model_threads_per_fit": 16, "models": ["RWKV-4-Raven-14B", "alpaca-13b", "chatglm-6b", "claude-instant-v1", "claude-v1", "dolly-v2-12b", "fastchat-t5-3b", "gpt-3.5-turbo", "gpt-4", "gpt4all-13b-snoozy", "guanaco-33b", "koala-13b", "llama-13b", "mpt-7b-chat", "oasst-pythia-12b", "palm-2", "stablelm-tuned-alpha-7b", "vicuna-13b", "vicuna-7b", "wizardlm-13b"], "n_contexts": 32980, "negative_samples_per_positive": 10, "normalized_core_content_sha256": "96ca2fb0caf42adfaa9ba7439d7175232f4e88970795bd6048b524a916a395fe", "official_gated_source": {"api_visible_size_bytes": 41572998, "content_access": "HTTP 401/403 GatedRepo from HF Jobs", "dataset_id": "lmsys/chatbot_arena_conversations", "file": "data/train-00000-of-00001-cced8514c7ed782a.parquet", "revision": "1b6335d42a1d2c7e34870c905d03ab964f7f2bd8"}, "raw_rows": 33000, "runtime_seconds": 375.884, "schema_version": 1, "status": "VERIFIED", "tuning_iterations": 2}
+=== END claim_6_full_chatbot_arena: {"exit_code": 0, "name": "claim_6_full_chatbot_arena", "path": "repro/src/arena_full.py", "runtime_seconds": 380.438} ===
+
+=== START claim_6_independent_checker: repro/checkers/run_claim6_checker_suite.py ===
+CLAIM6_CHECKER={"checker": "independent serialized-contract reconstruction", "corruption_injected": false, "errors": [], "passed": true}
+CLAIM6_CHECKER={"checker": "independent serialized-contract reconstruction", "corruption_injected": true, "errors": ["n_contexts: expected 32980, observed 3000"], "passed": false}
+CLAIM6_INDEPENDENT_CHECKER={"actual_evidence_exit_code": 0, "actual_evidence_passed": true, "corrupted_evidence_exit_code": 1, "corrupted_evidence_rejected": true, "passed": true}
+=== END claim_6_independent_checker: {"exit_code": 0, "name": "claim_6_independent_checker", "path": "repro/checkers/run_claim6_checker_suite.py", "runtime_seconds": 0.126} ===
+
+=== START claim_1_gars: repro/tests/test_c1_gars.py ===
+=== Claim 1: GARS recovers Borda / BT / Rank-Centrality ===
+  true strengths s = [ 0.0316 -0.2263  0.5463  0.0108 -0.6298  0.2674]
+  [Borda] scores=[0.3338 0.1955 0.6553 0.3216 0.0473 0.4799]  ranks match s: True
+  [BT] scores=[ 0.1263 -0.905   2.1851  0.043  -2.5193  1.0698]  ranks match s: True
+  [RC] scores=[0.1685 0.0915 0.2968 0.1613 0.028  0.254 ]  ranks match s: True
+  BT recovery: F_bt vs s linear slope=4.0000 (expect 4.0); ratio=1.000
+  RC sums to 1: True (sum=1.000000)
+
+=== Jacobian checks (analytic vs finite-difference) ===
+  J_borda: max|analytic-numeric| = 5.75e-12  OK
+  J_bt: max|analytic-numeric| = 1.14e-05  OK
+  J_rc analytic vs numeric: max diff = 9.19e-10  OK
+
+CLAIM 1 VERDICT: PASS
+=== END claim_1_gars: {"exit_code": 0, "name": "claim_1_gars", "path": "repro/tests/test_c1_gars.py", "runtime_seconds": 0.609} ===
+
+=== START claims_2_to_5: repro/src/verify.py ===
+========================================================================
+TABLE 1  (n=1000, plugin vs debiased; err=RMSE, cov=marginal-95%)
+========================================================================
+
+[BORDA]  (paper plugin err/cov=0.38 / 0.17 ; debiased=0.15 / 0.94)
+  plugin    err 0.132±0.045  cov 0.000±0.000  bias 0.041
+  debiased  err 0.025±0.009  cov 0.908±0.134  bias 0.007
+  claim2: eff emp 0.0007 vs Sig/n 0.0005  | std-z 1.092(~1)
+
+[BT]  (paper plugin err/cov=0.62 / 0.09 ; debiased=0.25 / 0.90)
+  plugin    err 0.309±0.058  cov 0.017±0.050  bias 0.281
+  debiased  err 0.322±0.175  cov 0.892±0.121  bias 0.148
+  claim2: eff emp 0.1182 vs Sig/n 0.1424  | std-z 1.265(~1)
+
+[RC]  (paper plugin err/cov=0.52 / 0.12 ; debiased=0.27 / 0.91)
+  plugin    err 0.009±0.003  cov 0.033±0.085  bias 0.004
+  debiased  err 0.025±0.028  cov 0.792±0.166  bias 0.009
+  claim2: eff emp 0.0014 vs Sig/n 0.0014  | std-z 1.964(~1)
+
+========================================================================
+TABLE 2  (n=1500, beta=2000, A-optimal vs random MSE)
+========================================================================
+
+[BORDA]  (paper A-opt/random MSE = 0.108 / 0.133)
+  A-optimal MSE 0.0004±0.0002  (total budget 2000/2000)
+  random    MSE 0.0004±0.0003
+  A-optimal beats random: False  (reduction -0.8%)
+
+[BT]  (paper A-opt/random MSE = 2.565 / 2.910)
+  A-optimal MSE 0.2326±0.3181  (total budget 2000/2000)
+  random    MSE 0.7155±0.9746
+  A-optimal beats random: True  (reduction 67.5%)
+
+[RC]  (paper A-opt/random MSE = 0.010 / 0.017)
+  A-optimal MSE 0.0012±0.0019  (total budget 2000/2000)
+  random    MSE 0.0130±0.0355
+  A-optimal beats random: True  (reduction 90.6%)
+
+Saved outputs/verify_results.json  (137.9s)
+=== END claims_2_to_5: {"exit_code": 0, "name": "claims_2_to_5", "path": "repro/src/verify.py", "runtime_seconds": 138.974} ===
+
+=== START claim_6_mechanism: repro/src/c6_demo.py ===
+Claim 6 mechanism (K=20, n=3000, Borda):
+  plugin   mean CI width = 0.0003   coverage = 0.000
+  debiased mean CI width = 0.0320   coverage = 0.946
+  plugin/debiased width ratio = 0.010  (<<1 => plugin
+  CIs near-zero-width relative to debiased, and under-cover -> INVALID).
+  debiased coverage ~0.95 => interpretable, valid uncertainty.
+Saved outputs/c6_demo.json
+=== END claim_6_mechanism: {"exit_code": 0, "name": "claim_6_mechanism", "path": "repro/src/c6_demo.py", "runtime_seconds": 25.166} ===
+
+=== START negative_controls: repro/tests/test_controls.py ===
+
+=== Control A: inconsistent nuisance (kappa=0.97, BT) must FAIL debiasing ===
+  kappa=0.97 (inconsistent): BT debiased bias=0.818  coverage=0.323
+  EXPECTED: high bias & coverage well below 0.95 (debiasing cannot rescue an inconsistent nuisance for a nonlinear functional).  -> CONTROL HOLDS
+
+=== Control B: anti-informative policy must lose to random (BT) ===
+  random MSE  0.5360
+  anti    MSE 1.0891  (invert A-optimal weights)
+  EXPECTED: anti-informative > random.  -> CONTROL HOLDS
+
+============================================================
+NEGATIVE CONTROLS: ALL HOLD
+============================================================
+=== END negative_controls: {"exit_code": 0, "name": "negative_controls", "path": "repro/tests/test_controls.py", "runtime_seconds": 57.568} ===
+
+=== START final_evidence_bundle_checker: repro/checkers/run_evidence_bundle_checker.py ===
+EVIDENCE_BUNDLE_CHECKER={"corruption_injected": false, "errors": {"1": [], "2": [], "3": [], "4": [], "5": [], "6": []}, "passed": true, "verdicts": {"1": "VERIFIED", "2": "VERIFIED", "3": "BLOCKED", "4": "VERIFIED", "5": "BLOCKED", "6": "VERIFIED"}}
+EVIDENCE_BUNDLE_CHECKER={"corruption_injected": true, "errors": {"1": [], "2": [], "3": [], "4": [], "5": [], "6": ["n_contexts: expected 32980, observed 3000"]}, "passed": false, "verdicts": {"1": "VERIFIED", "2": "VERIFIED", "3": "BLOCKED", "4": "VERIFIED", "5": "BLOCKED", "6": "VERIFIED"}}
+EVIDENCE_BUNDLE_CHECKER_SUITE={"actual_exit_code": 0, "actual_passed": true, "corrupted_exit_code": 1, "corrupted_rejected": true, "passed": true}
+=== END final_evidence_bundle_checker: {"exit_code": 0, "name": "final_evidence_bundle_checker", "path": "repro/checkers/run_evidence_bundle_checker.py", "runtime_seconds": 0.118} ===
+
+ORX_RUN_SUMMARY={"estimated_required_cores": 64, "git_sha": "1c7b41b21a4c7ef1fb99821b33bef01316633dcd", "logical_cpu_allocation": 64, "passed": true, "python": "3.12.12", "runtime_seconds": 604.796, "schema_version": 1, "selected_compute": "Hugging Face cpu-upgrade", "steps": [{"exit_code": 0, "name": "exact_theory_claims_1_2_4", "path": "repro/src/exact_theory.py", "runtime_seconds": 1.789}, {"exit_code": 0, "name": "claim_6_full_chatbot_arena", "path": "repro/src/arena_full.py", "runtime_seconds": 380.438}, {"exit_code": 0, "name": "claim_6_independent_checker", "path": "repro/checkers/run_claim6_checker_suite.py", "runtime_seconds": 0.126}, {"exit_code": 0, "name": "claim_1_gars", "path": "repro/tests/test_c1_gars.py", "runtime_seconds": 0.609}, {"exit_code": 0, "name": "claims_2_to_5", "path": "repro/src/verify.py", "runtime_seconds": 138.974}, {"exit_code": 0, "name": "claim_6_mechanism", "path": "repro/src/c6_demo.py", "runtime_seconds": 25.166}, {"exit_code": 0, "name": "negative_controls", "path": "repro/tests/test_controls.py", "runtime_seconds": 57.568}, {"exit_code": 0, "name": "final_evidence_bundle_checker", "path": "repro/checkers/run_evidence_bundle_checker.py", "runtime_seconds": 0.118}]}

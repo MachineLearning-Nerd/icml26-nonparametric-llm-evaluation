@@ -1,0 +1,69 @@
+{
+  "assumptions_domain_quantifiers": {
+    "domain": "The paper's single author-generated NonlinearTie experiment, K=3, ternary outcomes, n=1000, learned cross-fitted LightGBM nuisance, known synthetic propensity, 100 repetitions.",
+    "quantifier": "A Monte Carlo summary of that particular experiment, not a universal statement over all admissible DGP seeds.",
+    "source_ambiguities": [
+      "Section 7.1 says p=5 while Appendix Table 5 says p=2.",
+      "The error norm and any scale multiplier are undefined.",
+      "DGP seed, several coefficient distributions, and synthetic fold count are omitted.",
+      "The v1 anonymous archive returns HTTP 410; the later named GitHub URL returns Repository not found."
+    ]
+  },
+  "claim_id": 3,
+  "counterexample_candidate_assumption_audit": {
+    "100_repetitions_matched": true,
+    "K_3_and_n_1000_matched": true,
+    "author_code_revision_matched": false,
+    "author_coefficient_distributions_matched": false,
+    "author_crossfit_fold_count_matched": false,
+    "author_dgp_seed_matched": false,
+    "author_error_definition_and_scale_matched": false,
+    "published_dgp_equations_matched": true
+  },
+  "exact_claim": "For Table 1 Borda at n=1000 over 100 runs, plugin error/coverage are 0.38+/-0.08 and 0.17+/-0.09, while debiased values are 0.15+/-0.03 and 0.94+/-0.06.",
+  "falsification_conclusion": "No valid falsification was established. Routes 1 and 2 diverge numerically but cannot contradict a particular reported Monte Carlo experiment without its omitted realization and metric.",
+  "independent_checker": {
+    "all_paper_intervals_feasible": true,
+    "borda_coordinate_bounds": [
+      0.0,
+      1.0
+    ],
+    "three_coordinate_l2_error_bound": 1.7320508075688772
+  },
+  "mathematical_feasibility_checks": {
+    "current_arxiv_pdf_retains_same_table1_values": true,
+    "debiased_coverage_interval_within_probability_bounds": true,
+    "debiased_error_interval_within_borda_l2_bounds": true,
+    "plugin_coverage_interval_within_probability_bounds": true,
+    "plugin_error_interval_within_borda_l2_bounds": true,
+    "reported_coverage_means_attainable_on_100_run_grid": true
+  },
+  "negative_control": {
+    "name": "replace debiased coverage by impossible 1.08+/-0.09",
+    "rejected": true
+  },
+  "paper": {
+    "debiased_coverage": {
+      "half_width": 0.06,
+      "mean": 0.94
+    },
+    "debiased_error": {
+      "half_width": 0.03,
+      "mean": 0.15
+    },
+    "plugin_coverage": {
+      "half_width": 0.09,
+      "mean": 0.17
+    },
+    "plugin_error": {
+      "half_width": 0.08,
+      "mean": 0.38
+    }
+  },
+  "route": 4,
+  "runtime_seconds": 0.000016,
+  "schema_version": 1,
+  "status": "BLOCKED",
+  "unblocker": "A public author-code revision with the exact Table 1 seed/config, or the raw 100-run Table 1 outputs and error-definition code.",
+  "valid_assumption_satisfying_counterexample": false
+}

@@ -1,0 +1,7 @@
+{
+  "actual_evidence_exit_code": 0,
+  "actual_evidence_passed": true,
+  "corrupted_evidence_exit_code": 1,
+  "corrupted_evidence_rejected": true,
+  "passed": true
+}

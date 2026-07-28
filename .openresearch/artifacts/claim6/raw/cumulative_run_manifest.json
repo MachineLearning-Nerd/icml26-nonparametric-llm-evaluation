@@ -1,0 +1,54 @@
+{
+  "estimated_required_cores": 64,
+  "git_sha": "1ff5009f4524a84f1a0743697ebeda122e22a54f",
+  "logical_cpu_allocation": 64,
+  "passed": true,
+  "python": "3.12.12",
+  "runtime_seconds": 527.503,
+  "schema_version": 1,
+  "selected_compute": "Hugging Face cpu-upgrade",
+  "steps": [
+    {
+      "exit_code": 0,
+      "name": "exact_theory_claims_1_2_4",
+      "path": "repro/src/exact_theory.py",
+      "runtime_seconds": 1.773
+    },
+    {
+      "exit_code": 0,
+      "name": "claim_6_full_chatbot_arena",
+      "path": "repro/src/arena_full.py",
+      "runtime_seconds": 303.296
+    },
+    {
+      "exit_code": 0,
+      "name": "claim_6_independent_checker",
+      "path": "repro/checkers/run_claim6_checker_suite.py",
+      "runtime_seconds": 0.12
+    },
+    {
+      "exit_code": 0,
+      "name": "claim_1_gars",
+      "path": "repro/tests/test_c1_gars.py",
+      "runtime_seconds": 0.597
+    },
+    {
+      "exit_code": 0,
+      "name": "claims_2_to_5",
+      "path": "repro/src/verify.py",
+      "runtime_seconds": 137.566
+    },
+    {
+      "exit_code": 0,
+      "name": "claim_6_mechanism",
+      "path": "repro/src/c6_demo.py",
+      "runtime_seconds": 25.745
+    },
+    {
+      "exit_code": 0,
+      "name": "negative_controls",
+      "path": "repro/tests/test_controls.py",
+      "runtime_seconds": 58.398
+    }
+  ]
+}

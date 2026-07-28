@@ -1,0 +1,12 @@
+{
+  "run_id": "45590082-8b8a-4e97-91e2-186d791e209c",
+  "git_sha": "1e584bb4319f785fba3790f7119aaa5d6f29fa74",
+  "fixed_command": "uv sync --frozen && uv run python repro/run_all.py",
+  "uv_lock_sha256": "95f8cd0826a479d495738fba954dc4e4a8712ce13614c21e2769667d3714c165",
+  "seeds": "0 through 11 finite-model paths",
+  "estimated_required_cores": 1,
+  "selected_compute": "Hugging Face cpu-upgrade because the inherited cumulative command was uncertain and exceeded five minutes",
+  "actual_logical_cpu_allocation": 64,
+  "exact_checker_runtime_seconds": 1.872,
+  "cumulative_runtime_seconds": 245.003
+}

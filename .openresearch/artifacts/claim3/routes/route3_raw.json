@@ -1,0 +1,195 @@
+{
+  "claim_id": 3,
+  "independent_checker": {
+    "max_abs_recomputation_error": 0.0,
+    "passed": true,
+    "recorded_l2_means": {
+      "debiased": 0.014624873428648256,
+      "plugin": 0.028798064828512798
+    }
+  },
+  "limitation": "The paper does not define Table 1's error norm or disclose a scale multiplier. A post-hoc scale is not accepted as verification.",
+  "matching_standard_metrics": [],
+  "negative_control": {
+    "corrupted_first_l2": 0.07079668849203458,
+    "corruption_detected": true,
+    "name": "corrupt one plugin coordinate by +0.1",
+    "original_first_l2": 0.041016422306114714
+  },
+  "paper": {
+    "debiased": {
+      "half_width": 0.03,
+      "mean": 0.15
+    },
+    "plugin": {
+      "half_width": 0.08,
+      "mean": 0.38
+    }
+  },
+  "question": "Can a standard, unscaled vector-error definition reconcile both Table 1 Borda error rows with the route-2 raw estimates?",
+  "raw_source": ".openresearch/artifacts/claim3/routes/route2_p5_raw.json",
+  "raw_source_sha256": "3ea58ee5e5a0a6d37f0b08de62db66ab6b91a0f321187725b6ca1e16987ee40d",
+  "route": 3,
+  "runtime_seconds": 0.022,
+  "schema_version": 1,
+  "standard_metric_matches_both_paper_intervals": {
+    "l1": false,
+    "l2": false,
+    "linf": false,
+    "mae": false,
+    "mse": false,
+    "rmse": false
+  },
+  "standard_metric_summaries": {
+    "l1": {
+      "debiased": {
+        "mean": 0.022906981091190142,
+        "monte_carlo_95_half_width": 0.0024013401067217266
+      },
+      "plugin": {
+        "mean": 0.045088688719589216,
+        "monte_carlo_95_half_width": 0.004983469124694709
+      }
+    },
+    "l2": {
+      "debiased": {
+        "mean": 0.014624873428648256,
+        "monte_carlo_95_half_width": 0.0015375022990238
+      },
+      "plugin": {
+        "mean": 0.028798064828512798,
+        "monte_carlo_95_half_width": 0.0031661229518042747
+      }
+    },
+    "linf": {
+      "debiased": {
+        "mean": 0.011453490545595,
+        "monte_carlo_95_half_width": 0.001200670053360874
+      },
+      "plugin": {
+        "mean": 0.022544344359794646,
+        "monte_carlo_95_half_width": 0.002491734562347368
+      }
+    },
+    "mae": {
+      "debiased": {
+        "mean": 0.00763566036373005,
+        "monte_carlo_95_half_width": 0.0008004467022405757
+      },
+      "plugin": {
+        "mean": 0.015029562906529736,
+        "monte_carlo_95_half_width": 0.0016611563748982362
+      }
+    },
+    "mse": {
+      "debiased": {
+        "mean": 0.00009160280630719447,
+        "monte_carlo_95_half_width": 0.00001798831624428059
+      },
+      "plugin": {
+        "mean": 0.00036255675618016703,
+        "monte_carlo_95_half_width": 0.00008702479500849415
+      }
+    },
+    "rmse": {
+      "debiased": {
+        "mean": 0.008443674610894274,
+        "monte_carlo_95_half_width": 0.0008876773662210595
+      },
+      "plugin": {
+        "mean": 0.016626570480882154,
+        "monte_carlo_95_half_width": 0.0018279619385116505
+      }
+    }
+  },
+  "status": "BLOCKED",
+  "undisclosed_common_scale_audit": {
+    "l1": {
+      "common_scale_exists": true,
+      "common_scale_intersection": [
+        6.653553441434683,
+        7.857866529135377
+      ],
+      "debiased_range": [
+        5.2385776860902515,
+        7.857866529135377
+      ],
+      "plugin_range": [
+        6.653553441434683,
+        10.202115276866515
+      ]
+    },
+    "l2": {
+      "common_scale_exists": true,
+      "common_scale_intersection": [
+        10.417366645517504,
+        12.307798824939095
+      ],
+      "debiased_range": [
+        8.205199216626063,
+        12.307798824939095
+      ],
+      "plugin_range": [
+        10.417366645517504,
+        15.973295523126842
+      ]
+    },
+    "linf": {
+      "common_scale_exists": true,
+      "common_scale_intersection": [
+        13.307106882869343,
+        15.715733058270851
+      ],
+      "debiased_range": [
+        10.477155372180567,
+        15.715733058270851
+      ],
+      "plugin_range": [
+        13.307106882869343,
+        20.404230553732994
+      ]
+    },
+    "mae": {
+      "common_scale_exists": true,
+      "common_scale_intersection": [
+        19.96066032430405,
+        23.57359958740612
+      ],
+      "debiased_range": [
+        15.715733058270748,
+        23.57359958740612
+      ],
+      "plugin_range": [
+        19.96066032430405,
+        30.606345830599547
+      ]
+    },
+    "mse": {
+      "common_scale_exists": false,
+      "common_scale_intersection": null,
+      "debiased_range": [
+        1310.0035341447308,
+        1965.0053012170963
+      ],
+      "plugin_range": [
+        827.4566530237809,
+        1268.7668679697974
+      ]
+    },
+    "rmse": {
+      "common_scale_exists": true,
+      "common_scale_intersection": [
+        18.043408311109683,
+        21.31773289413104
+      ],
+      "debiased_range": [
+        14.211821929420694,
+        21.31773289413104
+      ],
+      "plugin_range": [
+        18.043408311109683,
+        27.666559410368183
+      ]
+    }
+  }
+}

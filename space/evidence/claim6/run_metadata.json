@@ -1,0 +1,13 @@
+{
+  "run_id": "23b8ae80-b268-4527-858c-600e654512f8",
+  "git_sha": "1ff5009f4524a84f1a0743697ebeda122e22a54f",
+  "fixed_command": "uv sync --frozen && uv run python repro/run_all.py",
+  "uv_lock_sha256": "95f8cd0826a479d495738fba954dc4e4a8712ce13614c21e2769667d3714c165",
+  "seeds": [260121816, 260121817, 260121900, 260121901],
+  "estimated_simultaneously_useful_cores": 48,
+  "selected_compute": "Hugging Face cpu-upgrade",
+  "actual_logical_cpu_allocation": 64,
+  "arena_runtime_seconds": 298.715,
+  "independent_checker_runtime_seconds": 0.12,
+  "cumulative_runtime_seconds": 527.503
+}

@@ -1,0 +1,260 @@
+{
+  "assumptions_and_domain": {
+    "K": 3,
+    "budget": 2000,
+    "contexts": 1500,
+    "estimators": [
+      "debiased Borda GARS",
+      "debiased BT-projection GARS",
+      "debiased Rank Centrality GARS"
+    ],
+    "gamma": 1,
+    "p": 2,
+    "repetitions": 15,
+    "simulator": "BTMisspec"
+  },
+  "claim_id": 5,
+  "estimated_required_cores": 1,
+  "exact_claim_restatement": "In the v1 Table 2 experiment, at n=1500 contexts, beta=2000 comparisons, and 15 runs, A-optimal acquisition has lower mean MSE times 100 than random for Borda, BT, and Rank Centrality, with the six reported means and 95% intervals 0.108+/-0.041 vs 0.133+/-0.060, 2.565+/-1.046 vs 2.910+/-1.143, and 0.010+/-0.008 vs 0.017+/-0.007.",
+  "falsification_acceptance_rule": "A candidate must reverse A-optimal versus random with a paired-t 95% interval wholly above zero and exhaustive two-sided sign-flip p<0.05, while using the exact author v1 DGP seed, coefficient draws, code revision, and raw-run configuration.",
+  "independent_checker": {
+    "all_route_schemas_valid": true,
+    "detects_plus_0_1_corruption": true,
+    "summary_recomputation_exact": true
+  },
+  "limitations": [
+    "A clean-room DGP reversal cannot contradict the exact empirical table without the author seed, coefficient draws, and v1 raw configuration.",
+    "The Table 2 statement reports one finite simulation study rather than a universal theorem over every BTMisspec coefficient draw.",
+    "Failure to match the paper numbers is not a valid falsification."
+  ],
+  "logical_cpu_allocation": 8,
+  "maximum_summary_recomputation_abs_error": 0.0,
+  "negative_control": {
+    "name": "negative MSE injected into route 3 raw evidence",
+    "rejected": true
+  },
+  "reversal_audits": {
+    "1": {
+      "borda": {
+        "exhaustive_two_sided_sign_flip_pvalue": 0.55810546875,
+        "mean_aopt_minus_random": -0.0007901594044340798,
+        "paired_t_95_interval": [
+          -0.0035634815129318986,
+          0.001983162704063739
+        ],
+        "statistically_supported_aopt_worse": false
+      },
+      "bt": {
+        "exhaustive_two_sided_sign_flip_pvalue": 0.10943603515625,
+        "mean_aopt_minus_random": -0.5278392028987869,
+        "paired_t_95_interval": [
+          -1.2699510518533337,
+          0.2142726460557598
+        ],
+        "statistically_supported_aopt_worse": false
+      },
+      "rank_centrality": {
+        "exhaustive_two_sided_sign_flip_pvalue": 0.8809814453125,
+        "mean_aopt_minus_random": -0.0005162171987197666,
+        "paired_t_95_interval": [
+          -0.0028559144108985706,
+          0.0018234800134590374
+        ],
+        "statistically_supported_aopt_worse": false
+      }
+    },
+    "2": {
+      "borda": {
+        "exhaustive_two_sided_sign_flip_pvalue": 0.3369140625,
+        "mean_aopt_minus_random": -0.0033472110893980685,
+        "paired_t_95_interval": [
+          -0.010525197436068449,
+          0.0038307752572723113
+        ],
+        "statistically_supported_aopt_worse": false
+      },
+      "bt": {
+        "exhaustive_two_sided_sign_flip_pvalue": 0.0859375,
+        "mean_aopt_minus_random": 0.2626636338471294,
+        "paired_t_95_interval": [
+          -0.04131279004123467,
+          0.5666400577354934
+        ],
+        "statistically_supported_aopt_worse": false
+      },
+      "rank_centrality": {
+        "exhaustive_two_sided_sign_flip_pvalue": 0.3009033203125,
+        "mean_aopt_minus_random": -0.0012661837395580105,
+        "paired_t_95_interval": [
+          -0.0037079547599040857,
+          0.0011755872807880647
+        ],
+        "statistically_supported_aopt_worse": false
+      }
+    },
+    "3": {
+      "borda": {
+        "exhaustive_two_sided_sign_flip_pvalue": 0.32574462890625,
+        "mean_aopt_minus_random": -0.004774551422910731,
+        "paired_t_95_interval": [
+          -0.014945942477221997,
+          0.005396839631400535
+        ],
+        "statistically_supported_aopt_worse": false
+      },
+      "bt": {
+        "exhaustive_two_sided_sign_flip_pvalue": 0.63092041015625,
+        "mean_aopt_minus_random": -0.533356049617523,
+        "paired_t_95_interval": [
+          -2.918890270622724,
+          1.8521781713876782
+        ],
+        "statistically_supported_aopt_worse": false
+      },
+      "rank_centrality": {
+        "exhaustive_two_sided_sign_flip_pvalue": 0.26409912109375,
+        "mean_aopt_minus_random": 0.002338879272601756,
+        "paired_t_95_interval": [
+          -0.001984831331517565,
+          0.006662589876721078
+        ],
+        "statistically_supported_aopt_worse": false
+      }
+    }
+  },
+  "revision_audit": {
+    "current_pdf": "50 runs; revised means 0.130/0.141, 2.861/2.974, 0.017/0.020",
+    "interpretation": "The revision preserves all three directions and is not itself a falsification of the judged v1 statement.",
+    "judged_v1": "15 runs; means 0.108/0.133, 2.565/2.910, 0.010/0.017"
+  },
+  "route": 4,
+  "runtime_seconds": 0.707,
+  "schema_version": 1,
+  "source_identity": {
+    "all_required_identity_fields_available": false,
+    "exact_author_code_revision_available": false,
+    "exact_author_coefficient_draws_available": false,
+    "exact_author_dgp_seed_available": false,
+    "exact_v1_raw_repetitions_available": false
+  },
+  "statistically_supported_clean_room_reversals": [],
+  "status": "BLOCKED",
+  "summary_recomputation": {
+    "1": {
+      "borda": {
+        "aopt": {
+          "absolute_error": 0.0,
+          "recomputed_mean": 0.009877321107912737,
+          "stored_mean": 0.009877321107912737
+        },
+        "random": {
+          "absolute_error": 0.0,
+          "recomputed_mean": 0.010667480512346818,
+          "stored_mean": 0.010667480512346818
+        }
+      },
+      "bt": {
+        "aopt": {
+          "absolute_error": 0.0,
+          "recomputed_mean": 0.3726150576374087,
+          "stored_mean": 0.3726150576374087
+        },
+        "random": {
+          "absolute_error": 0.0,
+          "recomputed_mean": 0.9004542605361956,
+          "stored_mean": 0.9004542605361956
+        }
+      },
+      "rank_centrality": {
+        "aopt": {
+          "absolute_error": 0.0,
+          "recomputed_mean": 0.002921573206187161,
+          "stored_mean": 0.002921573206187161
+        },
+        "random": {
+          "absolute_error": 0.0,
+          "recomputed_mean": 0.0034377904049069266,
+          "stored_mean": 0.0034377904049069266
+        }
+      }
+    },
+    "2": {
+      "borda": {
+        "aopt": {
+          "absolute_error": 0.0,
+          "recomputed_mean": 0.034820877631796296,
+          "stored_mean": 0.034820877631796296
+        },
+        "random": {
+          "absolute_error": 0.0,
+          "recomputed_mean": 0.038168088721194364,
+          "stored_mean": 0.038168088721194364
+        }
+      },
+      "bt": {
+        "aopt": {
+          "absolute_error": 0.0,
+          "recomputed_mean": 3.682450725335888,
+          "stored_mean": 3.682450725335888
+        },
+        "random": {
+          "absolute_error": 0.0,
+          "recomputed_mean": 3.419787091488757,
+          "stored_mean": 3.419787091488757
+        }
+      },
+      "rank_centrality": {
+        "aopt": {
+          "absolute_error": 0.0,
+          "recomputed_mean": 0.01243302674381621,
+          "stored_mean": 0.01243302674381621
+        },
+        "random": {
+          "absolute_error": 0.0,
+          "recomputed_mean": 0.01369921048337422,
+          "stored_mean": 0.01369921048337422
+        }
+      }
+    },
+    "3": {
+      "borda": {
+        "aopt": {
+          "absolute_error": 0.0,
+          "recomputed_mean": 0.012132679222702895,
+          "stored_mean": 0.012132679222702895
+        },
+        "random": {
+          "absolute_error": 0.0,
+          "recomputed_mean": 0.01690723064561362,
+          "stored_mean": 0.01690723064561362
+        }
+      },
+      "bt": {
+        "aopt": {
+          "absolute_error": 0.0,
+          "recomputed_mean": 1.9130588687041015,
+          "stored_mean": 1.9130588687041015
+        },
+        "random": {
+          "absolute_error": 0.0,
+          "recomputed_mean": 2.4464149183216235,
+          "stored_mean": 2.4464149183216235
+        }
+      },
+      "rank_centrality": {
+        "aopt": {
+          "absolute_error": 0.0,
+          "recomputed_mean": 0.005591293185184576,
+          "stored_mean": 0.005591293185184576
+        },
+        "random": {
+          "absolute_error": 0.0,
+          "recomputed_mean": 0.0032524139125828196,
+          "stored_mean": 0.0032524139125828196
+        }
+      }
+    }
+  },
+  "unblocker": "A public exact v1 author archive or raw 15-run Table 2 outputs with DGP seed, coefficient draws, policy-design nuisance source, fold assignments, and MSE implementation.",
+  "valid_exact_source_counterexamples": []
+}

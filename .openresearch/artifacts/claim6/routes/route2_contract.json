@@ -1,0 +1,23 @@
+{
+  "claim_id": 6,
+  "route": 2,
+  "source_interpretation": "Use the one-commit ungated dim mirror of the official 33k Chatbot Arena release, but require the paper's exact cohort invariants before inference and disclose that the official gated content hash cannot be compared.",
+  "fixed_command": "uv sync --frozen && uv run python repro/run_all.py",
+  "dataset": {
+    "mirror_id": "dim/lmsys_chatbot_arena_conversations",
+    "mirror_revision": "2878f2cc68c9f95ba9d4fdb36bb0bcf35a289eae",
+    "mirror_file": "data/train-00000-of-00001-3ab4b90f49df282a.parquet",
+    "mirror_lfs_sha256": "d1b51b6052343ea0ef3762f9b1a6607146769d673e35a2b318cc77175daddd4d",
+    "official_id": "lmsys/chatbot_arena_conversations",
+    "official_file": "data/train-00000-of-00001-cced8514c7ed782a.parquet"
+  },
+  "requirements": [
+    "Require exactly 33,000 raw rows, 32,980 deduplicated question_id contexts, 20 models, and 102 features.",
+    "Record the raw mirror file SHA-256, LFS SHA-256, and a canonical normalized core-content SHA-256.",
+    "Run the full two-fold cross-fitted LightGBM outcome and propensity pipeline only after scale invariants pass.",
+    "Compute weighted Borda, BT, and Rank Centrality plugin and EIF simultaneous interval widths.",
+    "Require plugin median width below half the debiased width for all three GARS.",
+    "Require the omit-EIF negative control to reproduce plugin uncertainty and fail the debiased-width contract."
+  ],
+  "verifier": "repro/src/arena_full.py"
+}

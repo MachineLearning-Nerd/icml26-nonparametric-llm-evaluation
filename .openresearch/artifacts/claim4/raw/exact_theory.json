@@ -1,0 +1,46 @@
+{
+  "claim_1": {
+    "checks": {
+      "borda_rank_matches": true,
+      "bt_recovers_centered_strengths_max_abs": 2.498001805406602E-16,
+      "independent_bt_max_abs": 4.440892098500626E-16,
+      "negative_control_wrong_bt_difference": 0.24895482253187073,
+      "rc_rank_matches": true,
+      "rc_score_sum_abs": 1.1102230246251565E-16,
+      "rc_stationarity_max_abs": 8.326672684688674E-17,
+      "rc_transition_row_sum_max_abs": 1.1102230246251565E-16
+    },
+    "status": "VERIFIED"
+  },
+  "claim_2": {
+    "checks": {
+      "eif_mean_zero_abs": 0.0,
+      "max_pathwise_identity_abs": 2.7755575615628914E-17,
+      "negative_control_max_identity_error": 0.05131604520000002
+    },
+    "limitation": "The certificate reconstructs the general EIF identities on a complete finite observed-data model; finite computation alone is not a proof of every regularity condition in the paper's continuous-context asymptotic theorem.",
+    "scope": "machine-checkable pathwise derivative certificate for a saturated finite MAR model",
+    "status": "VERIFIED"
+  },
+  "claim_4": {
+    "checks": {
+      "budget_abs_error": 4.440892098500626E-16,
+      "independent_slsqp_max_abs": 5.8553100090730226E-8,
+      "interior_kkt_ratio_range": 1.3322676295501878E-15,
+      "lambda": 2.9449123088722198,
+      "negative_control_objective_gap": 12.383118546613833,
+      "negative_control_policy_difference": 0.5962324099170561
+    },
+    "policy": [
+      0.20186193844634284,
+      0.4071724656296387,
+      0.7736212298110203,
+      0.2305425798452758,
+      0.7890136811643614,
+      0.4555372612145416
+    ],
+    "status": "VERIFIED"
+  },
+  "passed": true,
+  "schema_version": 1
+}

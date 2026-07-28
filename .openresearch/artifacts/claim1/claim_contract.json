@@ -1,0 +1,17 @@
+{
+  "claim_id": 1,
+  "verdict_options": ["VERIFIED", "FALSIFIED", "BLOCKED"],
+  "source": {
+    "arxiv": "2601.21816",
+    "anchors": ["Section 4.1 Eq. (3)", "Section 4.2 Eqs. (4)-(6)", "Appendix C"]
+  },
+  "contract": [
+    "Implement theta=E[F(mu(X))] using the paper's ordered-pair binary formulas.",
+    "For a valid Bradley-Terry model, Eq. (3) recovers the centered latent strengths.",
+    "Borda equals Eq. (5) and Rank Centrality solves Eq. (6).",
+    "An independent constrained least-squares and stationarity checker must agree.",
+    "A forward-only Bradley-Terry symmetrization control must be rejected."
+  ],
+  "tolerance": 2e-9,
+  "verifier": "repro/src/exact_theory.py"
+}
