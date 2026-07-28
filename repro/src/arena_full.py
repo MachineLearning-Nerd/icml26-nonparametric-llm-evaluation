@@ -624,8 +624,10 @@ def main() -> int:
             "debiased_point": debiased.mean(axis=0).tolist(),
             "plugin_width_mean": float(plugin_width.mean()),
             "plugin_width_median": float(np.median(plugin_width)),
+            "plugin_width_by_model": plugin_width.tolist(),
             "debiased_width_mean": float(debiased_width.mean()),
             "debiased_width_median": float(np.median(debiased_width)),
+            "debiased_width_by_model": debiased_width.tolist(),
             "plugin_to_debiased_median_width_ratio": ratio,
             "mechanism_omit_eif_width_max_abs_difference_from_plugin": float(
                 np.max(np.abs(omit_eif_width - plugin_width))
