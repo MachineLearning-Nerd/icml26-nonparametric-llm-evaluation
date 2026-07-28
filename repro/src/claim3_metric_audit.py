@@ -50,7 +50,7 @@ def _summary(values: np.ndarray) -> dict[str, float]:
 
 
 def _overlap(observed: dict[str, float], paper: dict[str, float]) -> bool:
-    return (
+    return bool(
         observed["mean"] - observed["monte_carlo_95_half_width"]
         <= paper["mean"] + paper["half_width"]
         and paper["mean"] - paper["half_width"]
@@ -93,11 +93,14 @@ def main() -> int:
         )
         lower = max(interval[0] for interval in scale_ranges)
         upper = min(interval[1] for interval in scale_ranges)
+        common_scale_exists = bool(lower <= upper)
         scale_intersections[metric] = {
             "plugin_range": list(scale_ranges[0]),
             "debiased_range": list(scale_ranges[1]),
-            "common_scale_exists": lower <= upper,
-            "common_scale_intersection": [lower, upper] if lower <= upper else None,
+            "common_scale_exists": common_scale_exists,
+            "common_scale_intersection": [lower, upper]
+            if common_scale_exists
+            else None,
         }
 
     recorded_l2 = {
@@ -142,13 +145,13 @@ def main() -> int:
         "independent_checker": {
             "recorded_l2_means": recorded_l2,
             "max_abs_recomputation_error": independent_l2_error,
-            "passed": independent_l2_error < 1e-12,
+            "passed": bool(independent_l2_error < 1e-12),
         },
         "negative_control": {
             "name": "corrupt one plugin coordinate by +0.1",
             "original_first_l2": original_metric,
             "corrupted_first_l2": corrupted_metric,
-            "corruption_detected": corruption_detected,
+            "corruption_detected": bool(corruption_detected),
         },
         "raw_source": str(RAW.relative_to(ROOT)),
         "raw_source_sha256": _sha256(RAW),
