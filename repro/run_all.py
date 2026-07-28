@@ -23,7 +23,7 @@ import time
 ROOT = Path(__file__).resolve().parents[1]
 STEPS = (
     ("exact_theory_claims_1_2_4", ROOT / "repro/src/exact_theory.py"),
-    ("claim_5_table2_acquired_crossfit", ROOT / "repro/src/table2_crossfit.py"),
+    ("claim_5_table2_falsification", ROOT / "repro/src/claim5_falsification.py"),
     ("claim_1_gars", ROOT / "repro/tests/test_c1_gars.py"),
     ("claims_2_to_5", ROOT / "repro/src/verify.py"),
     ("claim_6_mechanism", ROOT / "repro/src/c6_demo.py"),
@@ -62,8 +62,8 @@ def main() -> int:
                 "python": sys.version.split()[0],
                 "platform": platform.platform(),
                 "logical_cpu_allocation": _available_cpus(),
-                "estimated_required_cores": 64,
-                "selected_compute": "Hugging Face cpu-upgrade",
+                "estimated_required_cores": 1,
+                "selected_compute": "local CPU",
                 "uv_lock_sha256": _sha256(ROOT / "uv.lock"),
             },
             sort_keys=True,
@@ -96,8 +96,8 @@ def main() -> int:
         "git_sha": _git_sha(),
         "python": sys.version.split()[0],
         "logical_cpu_allocation": _available_cpus(),
-        "estimated_required_cores": 64,
-        "selected_compute": "Hugging Face cpu-upgrade",
+        "estimated_required_cores": 1,
+        "selected_compute": "local CPU",
         "runtime_seconds": round(time.monotonic() - started, 3),
         "steps": step_records,
         "passed": len(step_records) == len(STEPS)
