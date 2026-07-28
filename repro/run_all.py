@@ -23,7 +23,7 @@ import time
 ROOT = Path(__file__).resolve().parents[1]
 STEPS = (
     ("exact_theory_claims_1_2_4", ROOT / "repro/src/exact_theory.py"),
-    ("claim_5_table2_pilot_learned", ROOT / "repro/src/table2_learned.py"),
+    ("claim_5_table2_acquired_crossfit", ROOT / "repro/src/table2_crossfit.py"),
     ("claim_1_gars", ROOT / "repro/tests/test_c1_gars.py"),
     ("claims_2_to_5", ROOT / "repro/src/verify.py"),
     ("claim_6_mechanism", ROOT / "repro/src/c6_demo.py"),

@@ -1,0 +1,15 @@
+{
+  "claim_id": 5,
+  "route": 3,
+  "source_interpretation": "Appendix Table 5 nctx=3000 is two independent 1500-context acquisitions, one A-optimal and one random. Exact synthetic mu designs the policy; acquired labels fit the estimator nuisance out of fold.",
+  "fixed_command": "uv sync --frozen && uv run python repro/run_all.py",
+  "requirements": [
+    "Design separate Borda, BT, and Rank Centrality A-optimal policies from exact synthetic probabilities at beta=2000.",
+    "Acquire independent n=1500 A-optimal and n=1500 random datasets.",
+    "Fit global binary LightGBM nuisances with two-fold cross-fitting and the paper's 30-draw, three-fold tuning procedure inside every training fold.",
+    "Run 15 deterministic v1 repetitions and report MSE times 100.",
+    "Require A-optimal mean MSE below random for all three GARS and overlap with all six v1 numerical intervals.",
+    "Require exact budgets, optimal variance objectives, nonnegative influence weights, and rejection of a budget-matched inverted-information control."
+  ],
+  "verifier": "repro/src/table2_crossfit.py"
+}
