@@ -23,6 +23,7 @@ import time
 ROOT = Path(__file__).resolve().parents[1]
 STEPS = (
     ("exact_theory_claims_1_2_4", ROOT / "repro/src/exact_theory.py"),
+    ("claim_6_full_chatbot_arena", ROOT / "repro/src/arena_full.py"),
     ("claim_1_gars", ROOT / "repro/tests/test_c1_gars.py"),
     ("claims_2_to_5", ROOT / "repro/src/verify.py"),
     ("claim_6_mechanism", ROOT / "repro/src/c6_demo.py"),
@@ -61,7 +62,7 @@ def main() -> int:
                 "python": sys.version.split()[0],
                 "platform": platform.platform(),
                 "logical_cpu_allocation": _available_cpus(),
-                "estimated_required_cores": 1,
+                "estimated_required_cores": 16,
                 "selected_compute": "Hugging Face cpu-upgrade",
                 "uv_lock_sha256": _sha256(ROOT / "uv.lock"),
             },
@@ -95,7 +96,7 @@ def main() -> int:
         "git_sha": _git_sha(),
         "python": sys.version.split()[0],
         "logical_cpu_allocation": _available_cpus(),
-        "estimated_required_cores": 1,
+        "estimated_required_cores": 16,
         "selected_compute": "Hugging Face cpu-upgrade",
         "runtime_seconds": round(time.monotonic() - started, 3),
         "steps": step_records,
