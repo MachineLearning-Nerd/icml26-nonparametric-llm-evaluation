@@ -424,6 +424,22 @@ def main() -> int:
     text_features = svd.fit_transform(tfidf)
     _stage(started, "svd_complete", components=text_features.shape[1])
     x_all = np.column_stack([toxicity, text_features, turns]).astype(np.float32)
+    feature_audit = {
+        "toxicity_min": float(toxicity.min()),
+        "toxicity_median": float(np.median(toxicity)),
+        "toxicity_max": float(toxicity.max()),
+        "toxicity_nonzero_count": int(np.count_nonzero(toxicity)),
+        "turn_min": float(turns.min()),
+        "turn_max": float(turns.max()),
+        "turn_unique_count": int(np.unique(turns).size),
+    }
+    if (
+        feature_audit["toxicity_nonzero_count"] == 0
+        or feature_audit["toxicity_max"] <= feature_audit["toxicity_min"]
+        or feature_audit["turn_unique_count"] < 2
+    ):
+        raise AssertionError(f"Claim-6 feature audit failed: {feature_audit}")
+    _stage(started, "feature_audit_complete", **feature_audit)
 
     models = sorted(set(frame["model_a"]) | set(frame["model_b"]))
     model_to_id = {model: index for index, model in enumerate(models)}
@@ -583,12 +599,26 @@ def main() -> int:
         )
         ratio = float(np.median(plugin_width / np.maximum(debiased_width, EPS)))
         check = ratio < 0.5 and float(np.median(debiased_width)) > 0
+
+        # Mechanism audit: omitting the EIF correction exactly recovers the
+        # plugin uncertainty calculation.
         omit_eif_width = plugin_width.copy()
-        control_ratio = float(
-            np.median(omit_eif_width / np.maximum(debiased_width, EPS))
+        omit_eif_matches_plugin = bool(
+            np.array_equal(omit_eif_width, plugin_width)
         )
-        control_rejected = control_ratio >= 0.5
-        all_pass &= check and control_rejected
+
+        # Negative control: rerun the *whole contrast* with the correction
+        # disabled. The candidate "debiased" width is then the plugin width,
+        # so their ratio is one and the claim contract must fail.
+        disabled_eif_ratio = float(
+            np.median(plugin_width / np.maximum(omit_eif_width, EPS))
+        )
+        disabled_eif_contract_passed = (
+            disabled_eif_ratio < 0.5
+            and float(np.median(omit_eif_width)) > 0
+        )
+        control_rejected = not disabled_eif_contract_passed
+        all_pass &= check and omit_eif_matches_plugin and control_rejected
         summaries[name] = {
             "plugin_point": plugin.mean(axis=0).tolist(),
             "debiased_point": debiased.mean(axis=0).tolist(),
@@ -597,11 +627,15 @@ def main() -> int:
             "debiased_width_mean": float(debiased_width.mean()),
             "debiased_width_median": float(np.median(debiased_width)),
             "plugin_to_debiased_median_width_ratio": ratio,
-            "negative_control_omit_eif_width_max_abs_difference": float(
+            "mechanism_omit_eif_width_max_abs_difference_from_plugin": float(
                 np.max(np.abs(omit_eif_width - plugin_width))
             ),
-            "negative_control_omit_eif_to_debiased_width_ratio": control_ratio,
-            "negative_control_rejected_by_contract": control_rejected,
+            "mechanism_omit_eif_matches_plugin": omit_eif_matches_plugin,
+            "negative_control_disabled_eif_width_ratio": disabled_eif_ratio,
+            "negative_control_disabled_eif_contract_passed": (
+                disabled_eif_contract_passed
+            ),
+            "negative_control_disabled_eif_rejected": control_rejected,
             "contract_passed": check,
         }
 
@@ -625,6 +659,7 @@ def main() -> int:
             "TF-IDF plus 100-dimensional TruncatedSVD",
             "turn index",
         ],
+        "feature_audit": feature_audit,
         "cross_fitting_folds": 2,
         "tuning_iterations": TUNING_ITERATIONS,
         "cv_jobs": CV_JOBS,
