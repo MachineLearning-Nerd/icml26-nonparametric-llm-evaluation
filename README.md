@@ -1,44 +1,171 @@
-# Reproduction result: four verified claims, two blocked tables
+# ICML 2026 — Nonparametric LLM Evaluation from Preference Data
 
-[![Open in molab](https://marimo.io/molab-shield.svg)](https://molab.marimo.io/github/MachineLearning-Nerd/icml26-repro-rHndxbqWyh-nonparametric-llm-eval/blob/master/notebooks/reproduction.py)
+Independent reproduction and evidence audit for **DMLRank**, the paper
+“Nonparametric LLM Evaluation from Preference Data.”
 
-We audited all six judged claims from
-“Nonparametric LLM Evaluation from Preference Data” (arXiv 2601.21816) with
-one locked `uv` environment and CPU-only compute. The exact GARS identities,
-EIF derivation, A-optimal policy, and full Chatbot Arena interval-width claim
-are `VERIFIED`. Tables 1 and 2 remain `BLOCKED` after four routes each because
-their exact author configurations are unavailable; they are not counted as
-passes.
+**Current evidence status:** Claims 1, 2, 4, and 6 are evidence-backed;
+Claims 3 and 5 remain `BLOCKED`. The blocked claims are not counted as passes,
+and this repository does not claim that every published number was reproduced.
 
-The strongest empirical result is full scale, not a proxy: 33,000 raw Arena
-rows become the paper's 32,980 contexts and 20 models. Median plugin/debiased
-interval-width ratios are 0.0402 (Borda), 0.0235 (Bradley–Terry), and 0.0141
-(Rank Centrality); disabling EIF makes the ratio 1.0 and the verifier rejects
-it. The official dataset is gated, so a pinned mirror with matching cohort
-invariants substitutes for it; byte identity cannot be proven. All uncertain
-or multi-core work used Hugging Face `cpu-upgrade` (64 logical CPUs); only
-short deterministic one-core audits ran locally.
+Paper and source links:
 
-- [Illustrated reproduction report](reports/reproduction/report.md)
-- [Self-contained marimo tutorial](notebooks/reproduction.py)
-- [Machine-readable claim artifacts](.openresearch/artifacts/)
-- [Evaluator-visible Space snapshot at published revision `1cabae5f`](space/README.md)
+- [arXiv abstract and metadata](https://arxiv.org/abs/2601.21816)
+- [arXiv HTML paper](https://arxiv.org/html/2601.21816)
+- [ICML 2026 OpenReview record](https://openreview.net/forum?id=rHndxbqWyh)
+- [Authors’ linked implementation](https://github.com/DennisFrauen/NonparametricLLMEval)
 
-## Experiment log
+## What the paper does
 
-| Branch / experiment | Purpose or change | Exact run command | Assessment / outcome | Compute |
-|---|---|---|---|---|
-| [`orx/baseline-judged-reproduction-plus-locked-uv-envi`](https://github.com/MachineLearning-Nerd/icml26-repro-rHndxbqWyh-nonparametric-llm-eval/tree/orx/baseline-judged-reproduction-plus-locked-uv-envi) | Freeze judged code and locked environment | `uv sync --frozen && uv run python repro/run_all.py` | Baseline completed; historical assertions lacked evaluator-visible evidence | HF cpu-upgrade · 64 CPUs |
-| [`orx/exact-theorem-contracts-and-analytic-checkers`](https://github.com/MachineLearning-Nerd/icml26-repro-rHndxbqWyh-nonparametric-llm-eval/tree/orx/exact-theorem-contracts-and-analytic-checkers) | Independent Claims 1, 2, and 4 certificates | `uv sync --frozen && uv run python repro/run_all.py` | VERIFIED / VERIFIED / VERIFIED | HF cpu-upgrade · 64 CPUs |
-| [`orx/table-1-dedicated-falsification-audit`](https://github.com/MachineLearning-Nerd/icml26-repro-rHndxbqWyh-nonparametric-llm-eval/tree/orx/table-1-dedicated-falsification-audit) | Claim 3 mandatory fourth route | `uv sync --frozen && uv run python repro/run_all.py` | BLOCKED; no exact counterexample | local · one-core task |
-| [`orx/table-2-dedicated-falsification-audit`](https://github.com/MachineLearning-Nerd/icml26-repro-rHndxbqWyh-nonparametric-llm-eval/tree/orx/table-2-dedicated-falsification-audit) | Claim 5 mandatory fourth route | `uv sync --frozen && uv run python repro/run_all.py` | BLOCKED; no exact counterexample | local · one-core task |
-| [`orx/cumulative-evaluator-evidence-bundle`](https://github.com/MachineLearning-Nerd/icml26-repro-rHndxbqWyh-nonparametric-llm-eval/tree/orx/cumulative-evaluator-evidence-bundle) | Literal-scale Arena run, independent corruption test, and all-claim evidence gate | `uv sync --frozen && uv run python repro/run_all.py` | C1/C2/C4/C6 VERIFIED; C3/C5 BLOCKED; all regressions and controls passed | HF cpu-upgrade · 64 CPUs · 604.796 s |
-| `master` | Reader-facing publication surface | Not run as an experiment (publication surface) | Published to existing HF Space revision `1cabae5f422670b1e971990e39a72bb47609c398`; awaiting live judge | none |
+DMLRank estimates generalized average ranking scores (GARS) from selectively
+observed pairwise preference data. The framework covers Borda scores,
+Bradley–Terry projections, and Rank Centrality/PageRank-style scores. It uses
+an efficient-influence-function (EIF) correction with cross-fitting so that
+flexible nuisance models can be used while retaining uncertainty estimates,
+and it derives an A-optimal policy for collecting preference labels under a
+budget.
 
-# icml26-repro-rHndxbqWyh — Nonparametric LLM Evaluation from Preference Data (DMLRank)
+## Claim ledger
 
-ICML 2026 Agent Reproduction Challenge. OpenReview: rHndxbqWyh. arXiv: 2601.21816.
+| Claim | Paper statement | Evidence production path | Repository verdict |
+|---|---|---|---|
+| C1 | GARS contains Borda, Bradley–Terry, and Rank Centrality | `repro/src/exact_theory.py` and `repro/tests/test_c1_gars.py` construct a BT model, evaluate all three maps, compare Jacobians with finite differences, and run a wrong-symmetrization control. | `VERIFIED` · high confidence |
+| C2 | The cross-fitted EIF estimator is orthogonal, asymptotically normal, and efficient under the theorem assumptions | The finite MAR certificate and independent derivation in `repro/src/exact_theory.py` check the EIF identity and reject an omitted-IPW control. | `VERIFIED` · medium confidence; finite certificate is not a proof assistant for every continuous-context regularity condition |
+| C3 | Table 1: plugin inference has poor coverage while debiasing repairs it at the reported finite-run scale | `repro/src/table1_borda.py`, `repro/src/claim3_metric_audit.py`, and `repro/src/claim3_falsification.py` run p=2 and p=5 interpretations, metric audits, and a fourth falsification route. | `BLOCKED` · low confidence; the author realization, metric scale, and exact code revision are unavailable |
+| C4 | The A-optimal acquisition policy has the clipped square-root form | `exact_theory.py` derives the KKT solution, solves the budget by bisection, compares with SLSQP, and runs an inverted-information control. | `VERIFIED` · high confidence |
+| C5 | Table 2: A-optimal acquisition beats random acquisition for the three GARS objectives | `repro/src/table2_oracle.py`, `table2_learned.py`, `table2_crossfit.py`, and `claim5_falsification.py` separate oracle, learned, acquired-data, and falsification routes. | `BLOCKED` · low confidence; the exact v1 author realization is unavailable |
+| C6 | On Chatbot Arena, naive plugin intervals collapse relative to debiased EIF intervals | `repro/src/arena_full.py` runs the literal 32,980-context/20-model pipeline; `repro/checkers/run_claim6_checker_suite.py` independently checks serialized evidence and rejects a corrupted dataset-size control. | `VERIFIED` · medium confidence; the official gated file cannot be proven byte-identical to the pinned mirror |
 
-Clean-room reproduction of the 6 anchored claims (GARS functional, debiased EIF
-estimator, A-optimal labeling policy, Tables 1 & 2, Chatbot Arena application).
-CPU-only Monte-Carlo verification against a known data-generating process.
+Canonical machine-readable evidence is under
+`.openresearch/artifacts/` and the evaluator-visible snapshot under `space/`.
+The older files in `outputs/` are retained as supporting sub-run outputs; the
+canonical six-claim verdict is recorded in `outputs/verdict.json`.
+
+## Results at a glance
+
+- C1: BT recovery, Rank Centrality stationarity, Borda/Rank Centrality ranking,
+  and Jacobian checks pass at numerical precision.
+- C2: the finite pathwise EIF identity agrees to `2.78e-17`; the omitted-IPW
+  control fails as expected.
+- C3: the qualitative coverage correction appears, but the reported error
+  magnitudes are not reproduced, so the claim remains blocked.
+- C4: the budget error is `4.44e-16`; independent SLSQP disagreement is
+  `5.86e-8`.
+- C5: the oracle route improves BT and Rank Centrality, while the Borda
+  comparison is effectively tied; the published finite-run claim remains
+  blocked because exact author inputs are missing.
+- C6: the full-scale run uses 33,000 raw rows, 32,980 contexts, 20 models,
+  and 102 features. Median plugin/EIF interval-width ratios are 0.0402
+  (Borda), 0.0235 (Bradley–Terry), and 0.0141 (Rank Centrality). The
+  independent checker passes the real evidence and rejects a 3,000-context
+  corruption.
+
+## Repository map
+
+| Path | Role |
+|---|---|
+| `repro/src/exact_theory.py` | C1, C2, and C4 analytic certificates |
+| `repro/src/table1_borda.py` | C3 finite Table 1 reconstruction |
+| `repro/src/claim3_metric_audit.py` | C3 metric-definition audit |
+| `repro/src/claim3_falsification.py` | C3 assumption-matched falsification route |
+| `repro/src/table2_oracle.py` | C5 oracle acquisition route |
+| `repro/src/table2_learned.py` | C5 pilot-learned acquisition route |
+| `repro/src/table2_crossfit.py` | C5 acquired-data cross-fitting route |
+| `repro/src/claim5_falsification.py` | C5 paired/sign-flip falsification route |
+| `repro/src/arena_full.py` | C6 full-scale Arena analysis |
+| `repro/checkers/` | Independent serialized-evidence and corruption checkers |
+| `.openresearch/artifacts/` | Claim contracts, methods, raw outputs, and limitations |
+| `space/` | Evaluator-visible evidence snapshot and release manifest |
+| `reports/reproduction/report.md` | Illustrated technical report |
+| `notebooks/reproduction.py` | Self-contained result walkthrough |
+| `docs/CLAIMS_PINNED.md` | Paper-to-claim contract |
+
+## Branch audit
+
+`main` is the reader-facing publication branch. The former internal `orx/*`
+branches are retained as clean `audit/*` branches so that every experiment
+route remains inspectable.
+
+| Clean branch | Former branch | Purpose |
+|---|---|---|
+| [`audit/baseline-locked-env`](https://github.com/MachineLearning-Nerd/icml26-nonparametric-llm-evaluation/tree/audit/baseline-locked-env) | `orx/baseline-judged-reproduction-plus-locked-uv-envi` | Freeze the judged baseline and lock the `uv` environment |
+| [`audit/theorem-contracts`](https://github.com/MachineLearning-Nerd/icml26-nonparametric-llm-evaluation/tree/audit/theorem-contracts) | `orx/exact-theorem-contracts-and-analytic-checkers` | Independent C1, C2, and C4 certificates |
+| [`audit/chatbot-arena-full`](https://github.com/MachineLearning-Nerd/icml26-nonparametric-llm-evaluation/tree/audit/chatbot-arena-full) | `orx/full-chatbot-arena-cross-fitted-inference` | Full Chatbot Arena inference route |
+| [`audit/table1-borda`](https://github.com/MachineLearning-Nerd/icml26-nonparametric-llm-evaluation/tree/audit/table1-borda) | `orx/published-dgp-table-1-borda-reconstruction` | First Table 1 Borda reconstruction |
+| [`audit/table1-covariate-interpretation`](https://github.com/MachineLearning-Nerd/icml26-nonparametric-llm-evaluation/tree/audit/table1-covariate-interpretation) | `orx/table-1-five-covariate-source-interpretation` | Test the five-covariate interpretation |
+| [`audit/table1-metric-audit`](https://github.com/MachineLearning-Nerd/icml26-nonparametric-llm-evaluation/tree/audit/table1-metric-audit) | `orx/table-1-error-definition-audit` | Audit the unresolved Table 1 error definition |
+| [`audit/table1-falsification`](https://github.com/MachineLearning-Nerd/icml26-nonparametric-llm-evaluation/tree/audit/table1-falsification) | `orx/table-1-dedicated-falsification-audit` | Complete the fourth C3 falsification route |
+| [`audit/table2-oracle`](https://github.com/MachineLearning-Nerd/icml26-nonparametric-llm-evaluation/tree/audit/table2-oracle) | `orx/oracle-published-dgp-table-2-calibration` | Calibrate the C5 oracle policy route |
+| [`audit/table2-pilot-learned`](https://github.com/MachineLearning-Nerd/icml26-nonparametric-llm-evaluation/tree/audit/table2-pilot-learned) | `orx/pilot-learned-table-2-reconstruction` | Reconstruct the pilot-learned C5 route |
+| [`audit/table2-crossfit`](https://github.com/MachineLearning-Nerd/icml26-nonparametric-llm-evaluation/tree/audit/table2-crossfit) | `orx/cross-fitted-acquired-data-table-2` | Cross-fit acquired data for C5 |
+| [`audit/table2-falsification`](https://github.com/MachineLearning-Nerd/icml26-nonparametric-llm-evaluation/tree/audit/table2-falsification) | `orx/table-2-dedicated-falsification-audit` | Complete the fourth C5 falsification route |
+| [`audit/cumulative-evidence`](https://github.com/MachineLearning-Nerd/icml26-nonparametric-llm-evaluation/tree/audit/cumulative-evidence) | `orx/cumulative-evaluator-evidence-bundle` | Assemble the final claim contracts, full-scale C6 run, controls, and evidence gate |
+| [`audit/arena-integrity`](https://github.com/MachineLearning-Nerd/icml26-nonparametric-llm-evaluation/tree/audit/arena-integrity) | `orx/arena-mirror-integrity-and-full-inference` | Audit mirror integrity and full Arena inference |
+| [`audit/claim6-checker`](https://github.com/MachineLearning-Nerd/icml26-nonparametric-llm-evaluation/tree/audit/claim6-checker) | `orx/independent-claim-6-checker-and-cumulative-evide` | Add the independent C6 checker and cumulative evidence |
+
+The branch purpose, old-to-new mapping, and final tip audit are also recorded
+in [`BRANCH_AUDIT.md`](BRANCH_AUDIT.md).
+
+## Reproduction commands
+
+The formal campaign uses the pinned environment:
+
+~~~text
+uv sync --frozen
+uv run python repro/run_all.py
+~~~
+
+The final cumulative evidence run used CPU-only Hugging Face `cpu-upgrade`
+compute with 64 logical CPUs and completed in 604.796 seconds. The short
+checks are:
+
+~~~text
+uv run python repro/tests/test_c1_gars.py
+uv run python repro/tests/test_controls.py
+uv run python repro/checkers/run_claim6_checker_suite.py
+uv run python repro/checkers/run_evidence_bundle_checker.py
+~~~
+
+The exact source anchors, seeds, raw outputs, limitations, and run metadata
+are linked from `space/pages/index.md`.
+
+## Scope limitations
+
+- C3 and C5 are finite numerical claims. The exact author seeds, coefficient
+  draws, metric conventions, and v1 code/data realization are not available,
+  so nearby clean-room numbers are not promoted to verification or
+  falsification.
+- C6 uses a pinned mirror because the official LMSYS file is gated in the
+  compute environment. Cohort invariants and row counts match, but byte
+  identity is not established.
+- A `VERIFIED` result means the stated contract passed the repository’s
+  evidence checks; it does not imply that every theorem assumption or every
+  paper number has been independently proven.
+- The current arXiv record links the authors’ implementation. This repository
+  documents an independent audit and its evidence routes; it is not an
+  endorsement or a replacement for the authors’ code.
+
+## Citation
+
+~~~bibtex
+@article{frauen2026nonparametric,
+  title         = {Nonparametric LLM Evaluation from Preference Data},
+  author        = {Frauen, Dennis and Deviyani, Athiya and van der Schaar, Mihaela and Feuerriegel, Stefan},
+  journal       = {arXiv preprint arXiv:2601.21816},
+  year          = {2026},
+  note          = {Accepted at ICML 2026}
+}
+~~~
+
+## Thank you
+
+Thank you to Dennis Frauen, Athiya Deviyani, Mihaela van der Schaar, and
+Stefan Feuerriegel for developing DMLRank and for making the paper,
+claim structure, and implementation trail available for independent study.
+Their work gives the reproduction community a useful test case for
+evidence-first evaluation of statistical claims in LLM leaderboards.
+
+## Attribution
+
+The repository’s approved publication history is attributed to
+`MachineLearning-Nerd <37579156+MachineLearning-Nerd@users.noreply.github.com>`.
+The final branch set uses `main` plus the clean `audit/*` names above.

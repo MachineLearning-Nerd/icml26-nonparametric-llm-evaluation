@@ -1,40 +1,49 @@
 {
   "paper": "rHndxbqWyh",
   "arxiv": "2601.21816",
+  "scope": "independent_clean_room_claim_audit",
   "claims": {
     "c1_GARS_unifies_Borda_BT_RC": {
-      "status": "VERIFIED_EXACT",
-      "detail": "BT-model recovery: F_borda/F_bt/F_rc rank-match strengths; F_bt slope 4.000=2a (ratio 1.000); all 3 Jacobians match finite-diff <=1e-5."
+      "status": "VERIFIED",
+      "confidence": "HIGH",
+      "evidence": ".openresearch/artifacts/claim1"
     },
     "c2_Thm5_1_debiased_EIF_normal_efficient": {
       "status": "VERIFIED",
-      "detail": "std-z 1.09/1.27/1.96 (~1); empirical var == Sig/n (eff bound): Borda 0.0007/0.0005, BT 0.1182/0.1424, RC 0.0014/0.0014."
+      "confidence": "MEDIUM",
+      "evidence": ".openresearch/artifacts/claim2"
     },
     "c3_Table1_plugin_invalid_debiased_valid": {
-      "status": "VERIFIED",
-      "detail": "plugin cov 0.00/0.02/0.03 (invalid) vs debiased 0.91/0.89/0.79 (~0.95). BT bias 0.281->0.148."
+      "status": "BLOCKED",
+      "confidence": "LOW",
+      "evidence": ".openresearch/artifacts/claim3",
+      "reason": "The exact author finite-run realization, metric scale, and code revision are unavailable."
     },
     "c4_Thm6_2_A_optimal_policy_closed_form": {
       "status": "VERIFIED",
-      "detail": "pi*=clip[a,1]sqrt(tr(JVJ^T)/(lambda c)), lambda by 1-D bisection; budget satisfied exactly 2000/2000."
+      "confidence": "HIGH",
+      "evidence": ".openresearch/artifacts/claim4"
     },
     "c5_Table2_A_optimal_beats_random": {
-      "status": "VERIFIED",
-      "detail": "BT 0.233 vs 0.716 (-67%); RC 0.0012 vs 0.0130 (-91%); Borda tie (linear functional -> near-uniform optimal allocation)."
+      "status": "BLOCKED",
+      "confidence": "LOW",
+      "evidence": ".openresearch/artifacts/claim5",
+      "reason": "The exact v1 author finite-run realization is unavailable."
     },
     "c6_Chatbot_Arena_plugin_zero_width_CI": {
-      "status": "VERIFIED_MECHANISM",
-      "detail": "K=20 mechanism: plugin CI width 0.0003 / cov 0.000 vs debiased width 0.0320 / cov 0.946 (width ratio 0.010). Real LMSYS data pipeline = defined extension."
+      "status": "VERIFIED",
+      "confidence": "MEDIUM",
+      "evidence": ".openresearch/artifacts/claim6",
+      "reason": "The pinned mirror matches cohort invariants, but byte identity to the gated official source is not established."
     }
   },
-  "claims_verified": 5,
+  "claims_verified": 4,
+  "claims_blocked": 2,
   "claims_total": 6,
-  "points": 10,
-  "honest_negatives": [
-    "c6 verified at mechanism scale (K=20), not literal Chatbot Arena n=32980 (data pipeline pending)"
-  ],
   "negative_controls": {
-    "inconsistent_nuisance_BT": "bias 0.818 cov 0.323 (breaks, as required)",
-    "anti_informative_policy": "MSE 1.09 > random 0.54 (loses, as required)"
-  }
+    "c6_corruption_rejected": true,
+    "inconsistent_nuisance_rejected": true,
+    "anti_informative_policy_rejected": true
+  },
+  "attribution": "MachineLearning-Nerd <37579156+MachineLearning-Nerd@users.noreply.github.com>"
 }

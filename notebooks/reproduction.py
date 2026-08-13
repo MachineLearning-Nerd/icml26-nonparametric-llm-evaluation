@@ -16,7 +16,7 @@ def _(mo):
     mo.md(r"""
     # Nonparametric LLM evaluation: an evidence-first reproduction
 
-    ![Full-scale Chatbot Arena interval-width result](https://raw.githubusercontent.com/MachineLearning-Nerd/icml26-repro-rHndxbqWyh-nonparametric-llm-eval/master/reports/reproduction/images/claim6_headline.png)
+    ![Full-scale Chatbot Arena interval-width result](https://raw.githubusercontent.com/MachineLearning-Nerd/icml26-nonparametric-llm-evaluation/main/reports/reproduction/images/claim6_headline.png)
 
     **Headline:** at the paper's literal `n=32,980`, `K=20` Arena scale,
     plugin confidence intervals are only 1.4–4.0% as wide as the
@@ -135,7 +135,7 @@ def _(mo):
 
     The notebook intentionally embeds completed results. It does not ask
     Molab users to rerun expensive inference. See the
-    [illustrated report](https://github.com/MachineLearning-Nerd/icml26-repro-rHndxbqWyh-nonparametric-llm-eval/blob/master/reports/reproduction/report.md)
+    [illustrated report](https://github.com/MachineLearning-Nerd/icml26-nonparametric-llm-evaluation/blob/main/reports/reproduction/report.md)
     for implementation details, raw-evidence links, source ambiguity, and
     experiment branches.
     """)

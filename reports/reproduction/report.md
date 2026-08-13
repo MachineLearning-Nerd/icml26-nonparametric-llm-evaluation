@@ -130,11 +130,11 @@ seconds; its Arena step took 298.715 seconds.
 
 | Branch | Purpose | Exact run command | Outcome | Compute |
 |---|---|---|---|---|
-| [`orx/exact-theorem-contracts-and-analytic-checkers`](https://github.com/MachineLearning-Nerd/icml26-repro-rHndxbqWyh-nonparametric-llm-eval/tree/orx/exact-theorem-contracts-and-analytic-checkers) | Claims 1, 2, 4 certificates | `uv sync --frozen && uv run python repro/run_all.py` | VERIFIED / VERIFIED / VERIFIED | HF cpu-upgrade · 64 CPUs |
-| [`orx/table-1-dedicated-falsification-audit`](https://github.com/MachineLearning-Nerd/icml26-repro-rHndxbqWyh-nonparametric-llm-eval/tree/orx/table-1-dedicated-falsification-audit) | Claim 3 fourth route | `uv sync --frozen && uv run python repro/run_all.py` | BLOCKED | local · one-core task |
-| [`orx/table-2-dedicated-falsification-audit`](https://github.com/MachineLearning-Nerd/icml26-repro-rHndxbqWyh-nonparametric-llm-eval/tree/orx/table-2-dedicated-falsification-audit) | Claim 5 fourth route | `uv sync --frozen && uv run python repro/run_all.py` | BLOCKED | local · one-core task |
-| [`orx/independent-claim-6-checker-and-cumulative-evide`](https://github.com/MachineLearning-Nerd/icml26-repro-rHndxbqWyh-nonparametric-llm-eval/tree/orx/independent-claim-6-checker-and-cumulative-evide) | Full Arena and independent checker | `uv sync --frozen && uv run python repro/run_all.py` | VERIFIED | HF cpu-upgrade · 64 CPUs |
-| `master` | Publication surface | Not run as an experiment (publication surface) | Awaiting publication | none |
+| [`audit/theorem-contracts`](https://github.com/MachineLearning-Nerd/icml26-nonparametric-llm-evaluation/tree/audit/theorem-contracts) | Claims 1, 2, 4 certificates | `uv sync --frozen && uv run python repro/run_all.py` | VERIFIED / VERIFIED / VERIFIED | HF cpu-upgrade · 64 CPUs |
+| [`audit/table1-falsification`](https://github.com/MachineLearning-Nerd/icml26-nonparametric-llm-evaluation/tree/audit/table1-falsification) | Claim 3 fourth route | `uv sync --frozen && uv run python repro/run_all.py` | BLOCKED | local · one-core task |
+| [`audit/table2-falsification`](https://github.com/MachineLearning-Nerd/icml26-nonparametric-llm-evaluation/tree/audit/table2-falsification) | Claim 5 fourth route | `uv sync --frozen && uv run python repro/run_all.py` | BLOCKED | local · one-core task |
+| [`audit/claim6-checker`](https://github.com/MachineLearning-Nerd/icml26-nonparametric-llm-evaluation/tree/audit/claim6-checker) | Full Arena and independent checker | `uv sync --frozen && uv run python repro/run_all.py` | VERIFIED | HF cpu-upgrade · 64 CPUs |
+| `main` | Publication surface | Not run as an experiment (publication surface) | Current reader-facing surface | none |
 
 ## Assessment
 

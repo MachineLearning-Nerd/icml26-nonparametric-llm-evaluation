@@ -4,12 +4,25 @@
   "arxiv": "2601.21816",
   "tests_passed": true,
   "publication_gate_passed": true,
-  "claims_verified": 5,
+  "claims_verified": 4,
+  "claims_blocked": 2,
   "claims_total": 6,
-  "points": 10,
-  "claims_verified_machine_precision": ["c1"],
-  "honest_negatives": ["c6 verified at mechanism scale (K=20); literal Chatbot Arena n=32980 pipeline pending"],
+  "points_supported_by_current_evidence": 8,
+  "verified_claims": ["c1", "c2", "c4", "c6"],
+  "blocked_claims": ["c3", "c5"],
+  "honest_negatives": [
+    "c3 finite Table 1 numbers are unresolved because the exact author realization and metric scale are unavailable",
+    "c5 finite Table 2 numbers are unresolved because the exact v1 author realization is unavailable",
+    "c6 uses a pinned mirror whose byte identity to the gated official source cannot be proven"
+  ],
+  "canonical_evidence": "space/pages/index.md",
   "verdict": "outputs/verdict.json",
-  "verify": "python repro/src/verify.py",
-  "tests": ["python repro/tests/test_c1_gars.py", "python repro/tests/test_controls.py", "python repro/src/c6_demo.py"]
+  "full_run": "uv sync --frozen && uv run python repro/run_all.py",
+  "short_checks": [
+    "uv run python repro/tests/test_c1_gars.py",
+    "uv run python repro/tests/test_controls.py",
+    "uv run python repro/checkers/run_claim6_checker_suite.py",
+    "uv run python repro/checkers/run_evidence_bundle_checker.py"
+  ],
+  "attribution": "MachineLearning-Nerd <37579156+MachineLearning-Nerd@users.noreply.github.com>"
 }

@@ -1,7 +1,9 @@
-# Pinned claims — rHndxbqWyh "Nonparametric LLM Evaluation from Preference Data" (DMLRank)
+# Pinned claims — rHndxbqWyh “Nonparametric LLM Evaluation from Preference Data” (DMLRank)
 
-arXiv 2601.21816 — Frauen, Deviyani, van der Schaar, Feuerriegel (ICML 2026).
-No released code (clean-room; all estimators are closed-form, so clean-room = paper algorithm).
+arXiv 2601.21816v2 — Dennis Frauen, Athiya Deviyani, Mihaela van der Schaar,
+and Stefan Feuerriegel (ICML 2026). This repository is an independent
+claim-level audit. The current paper HTML links an authors’ implementation;
+the evidence routes here remain separately documented and contract-driven.
 
 Notation: K models, covariates X, ordered pair (j,k), preference outcome Y_{jk} over
 C=3 categories {1=j-win, 2=tie, 3=k-win}; μ_{jk}(x)=E[Y_{jk}|X=x]∈Δ^{C-1}; F maps μ to a score vector; θ=E[F(μ(X))].
