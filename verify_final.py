@@ -82,7 +82,7 @@ remote_heads = {
         "refs/remotes/origin",
         "--format=%(refname:short)",
     ).splitlines()
-    if line and line != "origin/HEAD"
+    if line and line != "origin"
 }
 if local_heads not in (EXPECTED_BRANCHES, {"main"}):
     fail("local_branches_" + ",".join(sorted(local_heads)))
