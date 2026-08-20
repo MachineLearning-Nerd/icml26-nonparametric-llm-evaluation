@@ -32,14 +32,17 @@ The repository does not claim author endorsement or a current external score.
 - outputs/gate.json — publication/documentation gate
 - BRANCH_AUDIT.md — branch purposes and normalization record
 
-## Reproduction entry point
+## Reproduction entry points
 
-    uv sync --frozen
-    uv run python repro/run_all.py
+The committed cumulative evidence records a historical formal campaign using
+uv sync --frozen and uv run python repro/run_all.py. That runner is not
+present in this checkout. The runnable checked-in short checks are listed in
+ENVIRONMENT.md and live under repro/tests/ and
+space/evidence/code/repro/checkers/.
 
-The committed cumulative run used CPU-only Hugging Face cpu-upgrade compute,
-64 logical CPUs, and 604.796 seconds. The standardization verifier checks the
-published structure and metadata without rerunning that campaign.
+The cumulative run used CPU-only Hugging Face cpu-upgrade compute, 64 logical
+CPUs, and 604.796 seconds. The standardization verifier checks the published
+structure and metadata without rerunning that campaign.
 
 ## Remaining limitations
 

@@ -20,7 +20,7 @@
       "status": "VERIFIED_SCOPED",
       "paper_anchor": "GARS definition and Borda, Bradley-Terry, and Rank Centrality special cases",
       "production": [
-        "repro/src/exact_theory.py",
+        "space/evidence/code/repro/src/exact_theory.py",
         "repro/tests/test_c1_gars.py",
         "space/evidence/claim1/raw/exact_theory.json"
       ],
@@ -38,7 +38,7 @@
       "status": "VERIFIED_SCOPED",
       "paper_anchor": "Theorem 5.1",
       "production": [
-        "repro/src/exact_theory.py",
+        "space/evidence/code/repro/src/exact_theory.py",
         "space/evidence/claim2/raw/exact_theory.json"
       ],
       "controls": [
@@ -56,9 +56,9 @@
       "status": "BLOCKED",
       "paper_anchor": "Table 1",
       "production": [
-        "repro/src/table1_borda.py",
-        "repro/src/claim3_metric_audit.py",
-        "repro/src/claim3_falsification.py"
+        "space/evidence/code/repro/src/table1_borda.py",
+        "space/evidence/code/repro/src/claim3_metric_audit.py",
+        "space/evidence/code/repro/src/claim3_falsification.py"
       ],
       "controls": [
         "metric recomputation",
@@ -74,7 +74,7 @@
       "status": "VERIFIED_SCOPED",
       "paper_anchor": "Theorem 6.2",
       "production": [
-        "repro/src/exact_theory.py",
+        "space/evidence/code/repro/src/exact_theory.py",
         "space/evidence/claim4/raw/exact_theory.json"
       ],
       "controls": [
@@ -93,10 +93,10 @@
       "status": "BLOCKED",
       "paper_anchor": "Table 2",
       "production": [
-        "repro/src/table2_oracle.py",
-        "repro/src/table2_learned.py",
-        "repro/src/table2_crossfit.py",
-        "repro/src/claim5_falsification.py"
+        "space/evidence/code/repro/src/table2_oracle.py",
+        "space/evidence/code/repro/src/table2_learned.py",
+        "space/evidence/code/repro/src/table2_crossfit.py",
+        "space/evidence/code/repro/src/claim5_falsification.py"
       ],
       "controls": [
         "paired/sign-flip audit",
@@ -111,8 +111,8 @@
       "status": "VERIFIED_SCOPED",
       "paper_anchor": "Full-scale Chatbot Arena analysis",
       "production": [
-        "repro/src/arena_full.py",
-        "repro/checkers/run_claim6_checker_suite.py",
+        "space/evidence/code/repro/src/arena_full.py",
+        "space/evidence/code/repro/checkers/run_claim6_checker_suite.py",
         "space/evidence/claim6/raw/final_with_width_vectors.json"
       ],
       "controls": [

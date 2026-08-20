@@ -10,17 +10,22 @@
 - Logical CPUs allocated: 64
 - Reported cumulative runtime: 604.796 seconds
 
-## Formal commands
+## Historical formal campaign
+
+The committed evidence records the following campaign command:
 
     uv sync --frozen
     uv run python repro/run_all.py
 
-## Short checks
+The current checkout does not contain repro/run_all.py. Treat that command as
+a historical run record, not as a runnable entry point in this snapshot.
+
+## Runnable short checks
 
     uv run python repro/tests/test_c1_gars.py
     uv run python repro/tests/test_controls.py
-    uv run python repro/checkers/run_claim6_checker_suite.py
-    uv run python repro/checkers/run_evidence_bundle_checker.py
+    uv run python space/evidence/code/repro/checkers/run_claim6_checker_suite.py
+    uv run python space/evidence/code/repro/checkers/run_evidence_bundle_checker.py
 
 ## Interpretation
 

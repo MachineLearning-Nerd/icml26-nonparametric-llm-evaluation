@@ -33,12 +33,12 @@ budget.
 
 | Claim | Paper statement | Evidence production path | Repository verdict |
 |---|---|---|---|
-| C1 | GARS contains Borda, Bradley–Terry, and Rank Centrality | `repro/src/exact_theory.py` and `repro/tests/test_c1_gars.py` construct a BT model, evaluate all three maps, compare Jacobians with finite differences, and run a wrong-symmetrization control. | `VERIFIED` · high confidence |
-| C2 | The cross-fitted EIF estimator is orthogonal, asymptotically normal, and efficient under the theorem assumptions | The finite MAR certificate and independent derivation in `repro/src/exact_theory.py` check the EIF identity and reject an omitted-IPW control. | `VERIFIED` · medium confidence; finite certificate is not a proof assistant for every continuous-context regularity condition |
-| C3 | Table 1: plugin inference has poor coverage while debiasing repairs it at the reported finite-run scale | `repro/src/table1_borda.py`, `repro/src/claim3_metric_audit.py`, and `repro/src/claim3_falsification.py` run p=2 and p=5 interpretations, metric audits, and a fourth falsification route. | `BLOCKED` · low confidence; the author realization, metric scale, and exact code revision are unavailable |
-| C4 | The A-optimal acquisition policy has the clipped square-root form | `exact_theory.py` derives the KKT solution, solves the budget by bisection, compares with SLSQP, and runs an inverted-information control. | `VERIFIED` · high confidence |
-| C5 | Table 2: A-optimal acquisition beats random acquisition for the three GARS objectives | `repro/src/table2_oracle.py`, `table2_learned.py`, `table2_crossfit.py`, and `claim5_falsification.py` separate oracle, learned, acquired-data, and falsification routes. | `BLOCKED` · low confidence; the exact v1 author realization is unavailable |
-| C6 | On Chatbot Arena, naive plugin intervals collapse relative to debiased EIF intervals | `repro/src/arena_full.py` runs the literal 32,980-context/20-model pipeline; `repro/checkers/run_claim6_checker_suite.py` independently checks serialized evidence and rejects a corrupted dataset-size control. | `VERIFIED` · medium confidence; the official gated file cannot be proven byte-identical to the pinned mirror |
+| C1 | GARS contains Borda, Bradley–Terry, and Rank Centrality | `space/evidence/code/repro/src/exact_theory.py` and `repro/tests/test_c1_gars.py` construct a BT model, evaluate all three maps, compare Jacobians with finite differences, and run a wrong-symmetrization control. | `VERIFIED` · high confidence |
+| C2 | The cross-fitted EIF estimator is orthogonal, asymptotically normal, and efficient under the theorem assumptions | The finite MAR certificate and independent derivation in `space/evidence/code/repro/src/exact_theory.py` check the EIF identity and reject an omitted-IPW control. | `VERIFIED` · medium confidence; finite certificate is not a proof assistant for every continuous-context regularity condition |
+| C3 | Table 1: plugin inference has poor coverage while debiasing repairs it at the reported finite-run scale | `space/evidence/code/repro/src/table1_borda.py`, `space/evidence/code/repro/src/claim3_metric_audit.py`, and `space/evidence/code/repro/src/claim3_falsification.py` run p=2 and p=5 interpretations, metric audits, and a fourth falsification route. | `BLOCKED` · low confidence; the author realization, metric scale, and exact code revision are unavailable |
+| C4 | The A-optimal acquisition policy has the clipped square-root form | `space/evidence/code/repro/src/exact_theory.py` derives the KKT solution, solves the budget by bisection, compares with SLSQP, and runs an inverted-information control. | `VERIFIED` · high confidence |
+| C5 | Table 2: A-optimal acquisition beats random acquisition for the three GARS objectives | `space/evidence/code/repro/src/table2_oracle.py`, `space/evidence/code/repro/src/table2_learned.py`, `space/evidence/code/repro/src/table2_crossfit.py`, and `space/evidence/code/repro/src/claim5_falsification.py` separate oracle, learned, acquired-data, and falsification routes. | `BLOCKED` · low confidence; the exact v1 author realization is unavailable |
+| C6 | On Chatbot Arena, naive plugin intervals collapse relative to debiased EIF intervals | `space/evidence/code/repro/src/arena_full.py` runs the literal 32,980-context/20-model pipeline; `space/evidence/code/repro/checkers/run_claim6_checker_suite.py` independently checks serialized evidence and rejects a corrupted dataset-size control. | `VERIFIED` · medium confidence; the official gated file cannot be proven byte-identical to the pinned mirror |
 
 Canonical machine-readable evidence is under
 `.openresearch/artifacts/` and the evaluator-visible snapshot under `space/`.
@@ -70,16 +70,16 @@ canonical six-claim verdict is recorded in `outputs/verdict.json`.
 
 | Path | Role |
 |---|---|
-| `repro/src/exact_theory.py` | C1, C2, and C4 analytic certificates |
-| `repro/src/table1_borda.py` | C3 finite Table 1 reconstruction |
-| `repro/src/claim3_metric_audit.py` | C3 metric-definition audit |
-| `repro/src/claim3_falsification.py` | C3 assumption-matched falsification route |
-| `repro/src/table2_oracle.py` | C5 oracle acquisition route |
-| `repro/src/table2_learned.py` | C5 pilot-learned acquisition route |
-| `repro/src/table2_crossfit.py` | C5 acquired-data cross-fitting route |
-| `repro/src/claim5_falsification.py` | C5 paired/sign-flip falsification route |
-| `repro/src/arena_full.py` | C6 full-scale Arena analysis |
-| `repro/checkers/` | Independent serialized-evidence and corruption checkers |
+| `space/evidence/code/repro/src/exact_theory.py` | C1, C2, and C4 analytic certificates |
+| `space/evidence/code/repro/src/table1_borda.py` | C3 finite Table 1 reconstruction |
+| `space/evidence/code/repro/src/claim3_metric_audit.py` | C3 metric-definition audit |
+| `space/evidence/code/repro/src/claim3_falsification.py` | C3 assumption-matched falsification route |
+| `space/evidence/code/repro/src/table2_oracle.py` | C5 oracle acquisition route |
+| `space/evidence/code/repro/src/table2_learned.py` | C5 pilot-learned acquisition route |
+| `space/evidence/code/repro/src/table2_crossfit.py` | C5 acquired-data cross-fitting route |
+| `space/evidence/code/repro/src/claim5_falsification.py` | C5 paired/sign-flip falsification route |
+| `space/evidence/code/repro/src/arena_full.py` | C6 full-scale Arena analysis |
+| `space/evidence/code/repro/checkers/` | Independent serialized-evidence and corruption checkers |
 | `.openresearch/artifacts/` | Claim contracts, methods, raw outputs, and limitations |
 | `space/` | Evaluator-visible evidence snapshot and release manifest |
 | `reports/reproduction/report.md` | Illustrated technical report |
@@ -114,26 +114,28 @@ in [`BRANCH_AUDIT.md`](BRANCH_AUDIT.md).
 
 ## Reproduction commands
 
-The formal campaign uses the pinned environment:
+The committed evidence records a historical formal campaign using the pinned
+environment:
 
 ~~~text
 uv sync --frozen
 uv run python repro/run_all.py
 ~~~
 
-The final cumulative evidence run used CPU-only Hugging Face `cpu-upgrade`
-compute with 64 logical CPUs and completed in 604.796 seconds. The short
-checks are:
+The current checkout does not contain that historical runner. The runnable
+short checks are:
 
 ~~~text
 uv run python repro/tests/test_c1_gars.py
 uv run python repro/tests/test_controls.py
-uv run python repro/checkers/run_claim6_checker_suite.py
-uv run python repro/checkers/run_evidence_bundle_checker.py
+uv run python space/evidence/code/repro/checkers/run_claim6_checker_suite.py
+uv run python space/evidence/code/repro/checkers/run_evidence_bundle_checker.py
 ~~~
 
-The exact source anchors, seeds, raw outputs, limitations, and run metadata
-are linked from `space/pages/index.md`.
+The final cumulative evidence run used CPU-only Hugging Face `cpu-upgrade`
+compute with 64 logical CPUs and completed in 604.796 seconds. The exact
+source anchors, seeds, raw outputs, limitations, and run metadata are linked
+from `space/pages/index.md`.
 
 ## Scope limitations
 

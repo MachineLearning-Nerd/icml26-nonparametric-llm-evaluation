@@ -20,7 +20,8 @@ special cases for Borda, Bradley–Terry, and Rank Centrality.
 
 Production path:
 
-- repro/src/exact_theory.py constructs a centered Bradley–Terry model and
+- space/evidence/code/repro/src/exact_theory.py constructs a centered
+  Bradley–Terry model and
   evaluates the three ranking maps.
 - repro/tests/test_c1_gars.py checks score identities, rankings, stationarity,
   and finite-difference Jacobians.
@@ -40,7 +41,8 @@ Paper anchor: Theorem 5.1 and the efficient-influence-function construction.
 
 Production path:
 
-- repro/src/exact_theory.py builds the finite missing-at-random observed-data
+- space/evidence/code/repro/src/exact_theory.py builds the finite
+  missing-at-random observed-data
   model and checks the pathwise EIF identity.
 - The same certificate checks mean-zero behavior and the efficient correction.
 - space/evidence/claim2/raw/exact_theory.json stores the result.
@@ -61,9 +63,12 @@ debiased inference in Table 1.
 
 Production path:
 
-- repro/src/table1_borda.py reconstructs the Borda simulation.
-- repro/src/claim3_metric_audit.py tests the competing error definitions.
-- repro/src/claim3_falsification.py provides an assumption-matched
+- space/evidence/code/repro/src/table1_borda.py reconstructs the Borda
+  simulation.
+- space/evidence/code/repro/src/claim3_metric_audit.py tests the competing
+  error definitions.
+- space/evidence/code/repro/src/claim3_falsification.py provides an
+  assumption-matched
   falsification route.
 - audit/table1-borda, audit/table1-covariate-interpretation,
   audit/table1-metric-audit, and audit/table1-falsification preserve the
@@ -85,7 +90,8 @@ Paper anchor: Theorem 6.2 and the clipped square-root policy formula.
 
 Production path:
 
-- repro/src/exact_theory.py derives the KKT solution and solves the budget by
+- space/evidence/code/repro/src/exact_theory.py derives the KKT solution and
+  solves the budget by
   bisection.
 - The result is compared with an independent SLSQP constrained optimizer.
 - The canonical finite certificate is under space/evidence/claim4.
@@ -105,10 +111,14 @@ Table 2 for the three GARS objectives.
 
 Production path:
 
-- repro/src/table2_oracle.py tests the oracle policy route.
-- repro/src/table2_learned.py tests the pilot-learned route.
-- repro/src/table2_crossfit.py tests acquired-data cross-fitting.
-- repro/src/claim5_falsification.py tests paired/sign-flip evidence.
+- space/evidence/code/repro/src/table2_oracle.py tests the oracle policy
+  route.
+- space/evidence/code/repro/src/table2_learned.py tests the pilot-learned
+  route.
+- space/evidence/code/repro/src/table2_crossfit.py tests acquired-data
+  cross-fitting.
+- space/evidence/code/repro/src/claim5_falsification.py tests paired/sign-flip
+  evidence.
 - audit/table2-oracle, audit/table2-pilot-learned,
   audit/table2-crossfit, and audit/table2-falsification preserve the routes.
 
@@ -128,9 +138,11 @@ debiased EIF intervals.
 
 Production path:
 
-- repro/src/arena_full.py runs the 32,980-context, 20-model pipeline with
+- space/evidence/code/repro/src/arena_full.py runs the 32,980-context,
+  20-model pipeline with
   102 features.
-- repro/checkers/run_claim6_checker_suite.py independently checks serialized
+- space/evidence/code/repro/checkers/run_claim6_checker_suite.py independently
+  checks serialized
   evidence in a fresh process.
 - audit/chatbot-arena-full, audit/arena-integrity, and audit/claim6-checker
   preserve the full analysis and integrity checks.
