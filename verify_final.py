@@ -101,7 +101,7 @@ if any(
     fail("legacy_branch_ref")
 
 commit_count = int(git("rev-list", "--count", "--all"))
-if commit_count != 22:
+if commit_count != 23:
     fail("commit_count_" + str(commit_count))
 
 identity_rows = git(
@@ -251,7 +251,7 @@ if "Complete paper-level claims independently verified: 0 of 6" not in gate_read
 print(
     "FINAL_AUDIT=VERIFIED "
     "branches=15 "
-    "commits=22 "
+    "commits=23 "
     "claims=C1:C2:C4:C6_verified_scoped,C3:C5_blocked "
     "evidence_points=8 "
     "paper_claims_verified=0 "
