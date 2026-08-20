@@ -1,0 +1,31 @@
+{
+  "manifest_version": 1,
+  "repository": "MachineLearning-Nerd/icml26-nonparametric-llm-evaluation",
+  "required_paths": [
+    "README.md",
+    "STATUS.md",
+    "CLAIM_EVIDENCE.md",
+    "SOURCE_AUDIT.md",
+    "ENVIRONMENT.md",
+    "REPORT.md",
+    "AUTHOR_THANK_YOU.md",
+    "CITATION.cff",
+    "BRANCH_AUDIT.md",
+    "GATE_READY.md",
+    "claims.json",
+    "reproduction_verdicts.json",
+    "AUTONOMOUS_STATE.json",
+    "outputs/gate.json",
+    "outputs/verdict.json",
+    "publication_gate.json",
+    "docs/CLAIMS_PINNED.md",
+    "repro/src/exact_theory.py",
+    "repro/src/table1_borda.py",
+    "repro/src/table2_oracle.py",
+    "repro/src/arena_full.py",
+    "repro/checkers/run_claim6_checker_suite.py",
+    "space/pages/index.md",
+    "reports/reproduction/report.md",
+    "verify_final.py"
+  ]
+}

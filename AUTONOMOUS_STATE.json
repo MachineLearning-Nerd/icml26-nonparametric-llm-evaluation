@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "paper": "Nonparametric LLM Evaluation from Preference Data",
+  "method": "DMLRank",
+  "arxiv": "2601.21816",
+  "submission": "rHndxbqWyh",
+  "phase": "standardized_claim_audit_publication",
+  "status": "INCONCLUSIVE_C1_C2_C4_C6_VERIFIED_C3_C5_BLOCKED_NO_PAPER_CLAIMS_VERIFIED_NO_CURRENT_SCORE",
+  "next_action": "Retain the evidence boundary. Unblock C3 and C5 only with the exact author finite-run realization; do not claim a current external score.",
+  "current_score_claim": false,
+  "publication_allowed": false,
+  "author_endorsement_claimed": false,
+  "claim_statuses": {
+    "C1": "VERIFIED_SCOPED",
+    "C2": "VERIFIED_SCOPED",
+    "C3": "BLOCKED",
+    "C4": "VERIFIED_SCOPED",
+    "C5": "BLOCKED",
+    "C6": "VERIFIED_SCOPED"
+  },
+  "source": {
+    "version": "ar5iv HTML retrieved 2026-07-28",
+    "sha256": "25f14e3a172cfa9427c501e9b1ed973c4a0e1549ee03a7593e5312f9e6474847"
+  },
+  "repository": {
+    "owner": "MachineLearning-Nerd",
+    "canonical_email": "MachineLearning-Nerd@users.noreply.github.com",
+    "github": "https://github.com/MachineLearning-Nerd/icml26-nonparametric-llm-evaluation",
+    "branches": 15,
+    "recovery_bundle_sha256": "0c7e874d1cb35c35490c9b4518417b5f6670c668f48606e9ec9b8f9d97205bee"
+  }
+}

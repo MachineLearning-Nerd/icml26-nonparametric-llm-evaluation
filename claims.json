@@ -1,0 +1,145 @@
+{
+  "schema_version": 1,
+  "paper": {
+    "title": "Nonparametric LLM Evaluation from Preference Data",
+    "method": "DMLRank",
+    "arxiv": "2601.21816",
+    "submission": "rHndxbqWyh",
+    "authors": [
+      "Dennis Frauen",
+      "Athiya Deviyani",
+      "Mihaela van der Schaar",
+      "Stefan Feuerriegel"
+    ]
+  },
+  "overall_status": "INCONCLUSIVE_C1_C2_C4_C6_VERIFIED_C3_C5_BLOCKED_NO_PAPER_CLAIMS_VERIFIED_NO_CURRENT_SCORE",
+  "claims": [
+    {
+      "id": "C1",
+      "name": "gars_special_cases",
+      "status": "VERIFIED_SCOPED",
+      "paper_anchor": "GARS definition and Borda, Bradley-Terry, and Rank Centrality special cases",
+      "production": [
+        "repro/src/exact_theory.py",
+        "repro/tests/test_c1_gars.py",
+        "space/evidence/claim1/raw/exact_theory.json"
+      ],
+      "controls": [
+        "wrong Bradley-Terry symmetrization"
+      ],
+      "scope": "Finite algebraic identities, rankings, stationarity, and Jacobians.",
+      "metrics": {
+        "wrong_symmetrization_difference": 0.24895482253187073
+      }
+    },
+    {
+      "id": "C2",
+      "name": "cross_fitted_eif",
+      "status": "VERIFIED_SCOPED",
+      "paper_anchor": "Theorem 5.1",
+      "production": [
+        "repro/src/exact_theory.py",
+        "space/evidence/claim2/raw/exact_theory.json"
+      ],
+      "controls": [
+        "omitted-IPW correction"
+      ],
+      "scope": "Finite saturated MAR pathwise EIF certificate; asymptotic premises remain outside finite computation.",
+      "metrics": {
+        "pathwise_identity_max_abs_error": 2.7755575615628914e-17,
+        "omitted_ipw_control_error": 0.05131604520000002
+      }
+    },
+    {
+      "id": "C3",
+      "name": "table1_plugin_vs_debiased",
+      "status": "BLOCKED",
+      "paper_anchor": "Table 1",
+      "production": [
+        "repro/src/table1_borda.py",
+        "repro/src/claim3_metric_audit.py",
+        "repro/src/claim3_falsification.py"
+      ],
+      "controls": [
+        "metric recomputation",
+        "impossible coverage checks",
+        "corruption checks"
+      ],
+      "scope": "Exact finite Table 1 values cannot be matched without the author realization.",
+      "blocker": "Author seed, coefficient draw, metric scale, and exact code revision are unavailable."
+    },
+    {
+      "id": "C4",
+      "name": "a_optimal_policy",
+      "status": "VERIFIED_SCOPED",
+      "paper_anchor": "Theorem 6.2",
+      "production": [
+        "repro/src/exact_theory.py",
+        "space/evidence/claim4/raw/exact_theory.json"
+      ],
+      "controls": [
+        "inverted-information policy",
+        "independent SLSQP optimizer"
+      ],
+      "scope": "Finite KKT, budget, and independent constrained-optimizer contract.",
+      "metrics": {
+        "budget_abs_error": 4.440892098500626e-16,
+        "slsqp_max_abs_disagreement": 5.8553100090730226e-08
+      }
+    },
+    {
+      "id": "C5",
+      "name": "table2_a_optimal_vs_random",
+      "status": "BLOCKED",
+      "paper_anchor": "Table 2",
+      "production": [
+        "repro/src/table2_oracle.py",
+        "repro/src/table2_learned.py",
+        "repro/src/table2_crossfit.py",
+        "repro/src/claim5_falsification.py"
+      ],
+      "controls": [
+        "paired/sign-flip audit",
+        "negative MSE corruption"
+      ],
+      "scope": "Exact finite Table 2 values cannot be matched without the v1 author realization.",
+      "blocker": "Author data/code realization and finite-run configuration are unavailable."
+    },
+    {
+      "id": "C6",
+      "name": "chatbot_arena_interval_widths",
+      "status": "VERIFIED_SCOPED",
+      "paper_anchor": "Full-scale Chatbot Arena analysis",
+      "production": [
+        "repro/src/arena_full.py",
+        "repro/checkers/run_claim6_checker_suite.py",
+        "space/evidence/claim6/raw/final_with_width_vectors.json"
+      ],
+      "controls": [
+        "disabled EIF correction",
+        "3,000-context corruption"
+      ],
+      "scope": "32,980-context, 20-model, 102-feature clean-room analysis using a pinned mirror.",
+      "metrics": {
+        "n_contexts": 32980,
+        "models": 20,
+        "feature_dimension": 102,
+        "borda_width_ratio": 0.04018219206377316,
+        "bt_width_ratio": 0.023531251149869956,
+        "rank_centrality_width_ratio": 0.014133656373289397
+      },
+      "limitation": "Pinned mirror cohort invariants match, but byte identity to the gated official source is not established."
+    }
+  ],
+  "audit": {
+    "scoped_contracts_verified": 4,
+    "claims_blocked": 2,
+    "claims_total": 6,
+    "evidence_points": 8,
+    "evidence_points_total": 12,
+    "paper_claims_verified": 0,
+    "current_score_claim": false,
+    "publication_allowed": false,
+    "attribution": "MachineLearning-Nerd <MachineLearning-Nerd@users.noreply.github.com>"
+  }
+}

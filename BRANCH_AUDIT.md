@@ -27,7 +27,19 @@ The final branch tips and remote branch list are verified after publication.
 All approved commits use:
 
 ~~~text
-MachineLearning-Nerd <37579156+MachineLearning-Nerd@users.noreply.github.com>
+MachineLearning-Nerd <MachineLearning-Nerd@users.noreply.github.com>
 ~~~
 
 No co-author trailers are retained in the approved history.
+
+## Normalization record
+
+- Pre-normalization main source tip:
+  f7b0025c2d158594709d8ba7ce9ef0efc08d00ed
+- Recovery bundle SHA-256:
+  0c7e874d1cb35c35490c9b4518417b5f6670c668f48606e9ec9b8f9d97205bee
+- Final branch set: main plus the 14 audit/* branches listed above
+- Legacy master and orx/* refs: absent after normalization
+
+The old branch names in the table are historical labels only. The public
+branch names are the clean names in the Clean branch column.

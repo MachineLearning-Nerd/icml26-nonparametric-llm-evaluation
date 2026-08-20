@@ -16,6 +16,11 @@ Paper and source links:
 
 ## What the paper does
 
+[Read the claim-to-evidence ledger](CLAIM_EVIDENCE.md), [source audit](SOURCE_AUDIT.md),
+[environment notes](ENVIRONMENT.md), and [publication report](REPORT.md) for the
+reproduction boundary and exact production paths. This is an independent audit,
+not an author-maintained implementation.
+
 DMLRank estimates generalized average ranking scores (GARS) from selectively
 observed pairwise preference data. The framework covers Borda scores,
 Bradley–Terry projections, and Rank Centrality/PageRank-style scores. It uses
@@ -42,6 +47,8 @@ canonical six-claim verdict is recorded in `outputs/verdict.json`.
 
 ## Results at a glance
 
+- Complete paper-level claims independently verified: 0/6. Four scoped
+  contracts pass; two finite claims remain blocked.
 - C1: BT recovery, Rank Centrality stationarity, Borda/Rank Centrality ranking,
   and Jacobian checks pass at numerical precision.
 - C2: the finite pathwise EIF identity agrees to `2.78e-17`; the omitted-IPW
@@ -130,6 +137,8 @@ are linked from `space/pages/index.md`.
 
 ## Scope limitations
 
+- This is an independent clean-room audit, not an author-maintained
+  implementation or an author endorsement.
 - C3 and C5 are finite numerical claims. The exact author seeds, coefficient
   draws, metric conventions, and v1 code/data realization are not available,
   so nearby clean-room numbers are not promoted to verification or
@@ -167,5 +176,5 @@ evidence-first evaluation of statistical claims in LLM leaderboards.
 ## Attribution
 
 The repository’s approved publication history is attributed to
-`MachineLearning-Nerd <37579156+MachineLearning-Nerd@users.noreply.github.com>`.
+`MachineLearning-Nerd <MachineLearning-Nerd@users.noreply.github.com>`.
 The final branch set uses `main` plus the clean `audit/*` names above.

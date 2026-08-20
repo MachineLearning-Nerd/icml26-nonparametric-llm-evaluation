@@ -2,6 +2,10 @@
   "paper": "rHndxbqWyh",
   "arxiv": "2601.21816",
   "scope": "independent_clean_room_claim_audit",
+  "paper_reproduction": "inconclusive",
+  "paper_claims_verified": 0,
+  "current_score_claim": false,
+  "publication_allowed": false,
   "claims": {
     "c1_GARS_unifies_Borda_BT_RC": {
       "status": "VERIFIED",
@@ -45,5 +49,5 @@
     "inconsistent_nuisance_rejected": true,
     "anti_informative_policy_rejected": true
   },
-  "attribution": "MachineLearning-Nerd <37579156+MachineLearning-Nerd@users.noreply.github.com>"
+  "attribution": "MachineLearning-Nerd <MachineLearning-Nerd@users.noreply.github.com>"
 }

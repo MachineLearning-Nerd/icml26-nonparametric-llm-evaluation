@@ -7,6 +7,10 @@
   "claims_verified": 4,
   "claims_blocked": 2,
   "claims_total": 6,
+  "paper_claims_verified": 0,
+  "paper_reproduction_gate_passed": false,
+  "current_score_claim": false,
+  "publication_allowed": false,
   "points_supported_by_current_evidence": 8,
   "verified_claims": ["c1", "c2", "c4", "c6"],
   "blocked_claims": ["c3", "c5"],
@@ -24,5 +28,5 @@
     "uv run python repro/checkers/run_claim6_checker_suite.py",
     "uv run python repro/checkers/run_evidence_bundle_checker.py"
   ],
-  "attribution": "MachineLearning-Nerd <37579156+MachineLearning-Nerd@users.noreply.github.com>"
+  "attribution": "MachineLearning-Nerd <MachineLearning-Nerd@users.noreply.github.com>"
 }

@@ -1,0 +1,58 @@
+{
+  "paper": "rHndxbqWyh",
+  "slug": "icml26-nonparametric-llm-evaluation",
+  "title": "Nonparametric LLM Evaluation from Preference Data",
+  "method": "DMLRank",
+  "arxiv": "2601.21816",
+  "gate_date": "2026-08-20",
+  "scope": "independent_clean_room_claim_audit",
+  "overall_status": "INCONCLUSIVE",
+  "scoped_contracts_verified": 4,
+  "claims_blocked": 2,
+  "claims_total": 6,
+  "evidence_points": 8,
+  "evidence_points_total": 12,
+  "paper_claims_verified": 0,
+  "tests_passed": true,
+  "documentation_gate_passed": true,
+  "publication_gate_passed": true,
+  "paper_reproduction_gate_passed": false,
+  "paper_algorithm_implemented": true,
+  "paper_claims_reproduced": false,
+  "current_score_claim": false,
+  "publication_allowed": false,
+  "gate_notes": "C1, C2, C4, and C6 have scoped evidence contracts. C3 and C5 remain blocked because exact author-controlled finite-run realizations are unavailable. C6 uses a pinned mirror whose byte identity to the gated official source is not established. Zero of six complete paper-level claims are independently verified.",
+  "claims": [
+    {
+      "id": "C1",
+      "status": "VERIFIED_SCOPED",
+      "summary": "Finite GARS special-case identities, rankings, stationarity, and Jacobians pass with a rejecting wrong-symmetrization control."
+    },
+    {
+      "id": "C2",
+      "status": "VERIFIED_SCOPED",
+      "summary": "Finite MAR EIF pathwise identity passes; omitted-IPW control is rejected."
+    },
+    {
+      "id": "C3",
+      "status": "BLOCKED",
+      "summary": "Table 1 qualitative direction appears, but exact finite values cannot be matched without the author realization."
+    },
+    {
+      "id": "C4",
+      "status": "VERIFIED_SCOPED",
+      "summary": "A-optimal KKT policy agrees with budget bisection and independent SLSQP checks."
+    },
+    {
+      "id": "C5",
+      "status": "BLOCKED",
+      "summary": "Table 2 direction changes across clean-room routes and the exact v1 author realization is unavailable."
+    },
+    {
+      "id": "C6",
+      "status": "VERIFIED_SCOPED",
+      "summary": "Full-scale 32,980-context Arena evidence and independent corruption checks pass on a pinned mirror."
+    }
+  ],
+  "attribution": "MachineLearning-Nerd <MachineLearning-Nerd@users.noreply.github.com>"
+}
